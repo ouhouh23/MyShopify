@@ -1,0 +1,69 @@
+<header class="header wrapper">
+    <nav class="header__navigation header__navigation--primary" aria-label="Website navigation">
+        <ul class="list header__list header__list--primary" role="list">
+            <li>
+                <a class="link" href="./women">Women</a>
+            </li>
+    
+            <li>
+                <a class="link" href="./men">Men</a>
+            </li>
+    
+            <li>
+                <a class="link" href="./kids">Kids</a>
+            </li>
+    
+            <li>
+                <a class="link" href="./company">Company</a>
+            </li>
+        </ul> 
+    </nav>
+    
+    <a class="header__logo" href="./home">
+        <img 
+            src="https://susparsa-deploy-yury-andrush.netlify.app/assets/images/logo.svg" 
+            alt="" 
+            width="139" 
+            height="32"
+            class="image header__image" 
+        />
+    </a>
+    
+    <nav class="header__navigation header__navigation--secondary" aria-label="Personal navigation">
+        <ul class="list header__list header__list--secondary" role="list">
+            <li>
+                <a class="link" href="./account">Account</a>
+            </li>
+    
+            <li>
+                <a class="link" href="./search">Search</a>
+            </li>
+    
+            <li>
+                <a class="link" href="./cart">
+                    Cart (<span data-cart-counter>0</span>)
+                </a>
+            </li>
+        </ul> 
+    </nav>
+</header>
+
+{% render 'alternate-break' %}
+
+{% schema %}
+  {
+    "name": "header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "header_logo_image",
+        "label": "Логотип"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Меню"
+      }
+    ]
+  }
+{% endschema %}

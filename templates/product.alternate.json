@@ -1,0 +1,22 @@
+{
+  "layout": "theme.alternate",
+  "sections": {
+    "product-main": {
+      "type": "Alternate-main-product",
+      "settings": {
+      }
+    },
+    "382a126f-6379-4c43-93df-daf8c17e9eb1": {
+      "type": "alternate-recommendations",
+      "settings": {
+        "recommendation_heading": "You may also like",
+        "product_collection": "",
+        "product_quantity": 3
+      }
+    }
+  },
+  "order": [
+    "product-main",
+    "382a126f-6379-4c43-93df-daf8c17e9eb1"
+  ]
+}

@@ -1,0 +1,206 @@
+<aside aria-labelledby="heading-secondary" class="aside wrapper">
+    <h2 id="heading-secondary" class="heading aside__heading">
+        You may also like
+    </h2>
+
+    <ul class="list cards" role="list">
+        <li>
+            <article aria-labelledby="card-heading-1" class="card">
+                <img 
+                    src="https://yury-andrush-develop.netlify.app/assets/images/card-aside-1.png"
+                    alt="Image of the pink woman hoodie"
+                    width="248" 
+                    height="368"
+                    class="image card__image" 
+                />
+              
+                <h3 class="heading card__heading" id="card-heading-1">
+                    <a class="link card__link" href="./product-1">
+                        Product name
+                    </a>
+                </h3>
+
+                <ul class="list card__list" role="list">
+                    <li class="card__item card__item--brown">
+                        <span class="visually-hidden">Brown latte color available</span>
+                    </li>
+
+                    <li class="card__item card__item--orange">
+                        <span class="visually-hidden">Orange latte color available</span>
+                    </li>
+
+                    <li class="card__item card__item--pink">
+                        <span class="visually-hidden">Pink latte color available</span>
+                    </li>
+
+                    <li class="card__item card__item--purple">
+                        <span class="visually-hidden">Purple color available</span>
+                    </li>
+                </ul>
+
+                <span>
+                    <abbr>CHF</abbr> <span>40</span>
+                </span>
+            </article>
+        </li>
+
+        <li>
+            <article aria-labelledby="card-heading-2" class="card">
+                <img 
+                    src="https://yury-andrush-develop.netlify.app/assets/images/card-aside-2.png"
+                    alt="Image of the man blue t-shirt"
+                    width="248" 
+                    height="368"
+                    class="image card__image" 
+                />
+
+                <h3 class="heading card__heading" id="card-heading-2">
+                    <a class="link card__link" href="./product-2">
+                        Product name
+                    </a>
+                </h3>
+
+                <ul class="list card__list" role="list">
+                    <li class="card__item card__item--brown">
+                        <span class="visually-hidden">Brown latte color available</span>
+                    </li>
+
+                    <li class="card__item card__item--orange">
+                        <span class="visually-hidden">Orange latte color available</span>
+                    </li>
+
+                    <li class="card__item card__item--pink">
+                        <span class="visually-hidden">Pink latte color available</span>
+                    </li>
+
+                    <li class="card__item card__item--purple">
+                        <span class="visually-hidden">Purple color available</span>
+                    </li>
+                </ul>
+
+                <span>
+                    <abbr>CHF</abbr> <span>40</span>
+                </span>
+            </article>
+        </li>
+
+        <li>
+            <article aria-labelledby="card-heading-3" class="card">
+                <ul class="list tags card__tags" role="list">
+                    <li class="tags__item">
+                        <span>Sold out</span>
+                    </li>
+                </ul>
+
+                <img 
+                    src="https://yury-andrush-develop.netlify.app/assets/images/card-aside-3.png"
+                    alt="Image of the woman green hoodie"
+                    width="248" 
+                    height="368"
+                    class="image card__image" 
+                />
+
+                <h3 class="heading card__heading" id="card-heading-3">
+                    <a class="link card__link" href="./product-3">
+                        Product name
+                    </a>
+                </h3>
+
+                <ul class="list card__list" role="list">
+                    <li class="card__item card__item--brown">
+                        <span class="visually-hidden">Brown latte color available</span>
+                    </li>
+
+                    <li class="card__item card__item--orange">
+                        <span class="visually-hidden">Orange latte color available</span>
+                    </li>
+
+                    <li class="card__item card__item--pink">
+                        <span class="visually-hidden">Pink latte color available</span>
+                    </li>
+
+                    <li class="card__item card__item--purple">
+                        <span class="visually-hidden">Purple color available</span>
+                    </li>
+                </ul>
+
+                <span>
+                    <abbr>CHF</abbr> <span>40</span>
+                </span>
+            </article>
+        </li>
+
+        <li>
+            <article aria-labelledby="card-heading-4" class="card">
+                <img 
+                    src="https://yury-andrush-develop.netlify.app/assets/images/card-aside-4.png"
+                    alt="Image of the woman black hoodie"
+                    width="248" 
+                    height="368"
+                    class="image card__image" 
+                />
+
+                <h3 class="heading card__heading" id="card-heading-4">
+                    <a class="link card__link" href="./product-4">
+                        Product name
+                    </a>
+                </h3>
+
+                <ul class="list card__list" role="list">
+                    <li class="card__item card__item--brown">
+                        <span class="visually-hidden">Brown latte color available</span>
+                    </li>
+
+                    <li class="card__item card__item--orange">
+                        <span class="visually-hidden">Orange latte color available</span>
+                    </li>
+
+                    <li class="card__item card__item--pink">
+                        <span class="visually-hidden">Pink latte color available</span>
+                    </li>
+
+                    <li class="card__item card__item--purple">
+                        <span class="visually-hidden">Purple color available</span>
+                    </li>
+                </ul>
+
+                <span>
+                    <abbr>CHF</abbr> <span>40</span>
+                </span>
+            </article>
+        </li>
+    </ul>
+</aside>
+
+{% schema %}
+  {
+    "name": "Alternate-recommendations",
+    "settings": [
+      {
+        "type": "text",
+        "id": "recommendation_heading",
+        "label": "Заголовок",
+        "default": "You may also like"
+      },
+      {
+        "type": "collection",
+        "id": "product_collection",
+        "label": "Коллекция"
+      },
+      {
+        "type": "range",
+        "id": "product_quantity",
+        "min": 3,
+        "max": 6,
+        "step": 1,
+        "label": "Лимит продуктов для отображения",
+        "default": 3
+      }
+    ],
+    "presets": [
+      {
+        "name": "alternate-recommendations"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,153 @@
+{% render 'alternate-break' %}
+
+<footer class="footer wrapper">
+    <div class="footer__container">
+        <section class="footer__section">
+            <h2 class="heading footer__heading">About</h2>
+    
+            <address class="footer__address">
+                <p>
+                    Susparsa Store
+                    <br>
+                    Geneva, Switzerland
+                </p>
+        
+                <ul class="list socials footer__socials" role="list">
+                    <li>
+                        <a href="https://www.facebook.com">
+                            <img 
+                                src="https://yury-andrush-develop.netlify.app/assets/images/icons/facebook-icon.svg"
+                                alt="Icon of the facebook and it's link"
+                                width="9"
+                                height="19"
+                                class="image" 
+                            />
+                        </a>
+                    </li>
+    
+                    <li>
+                        <a href="https://www.instagram.com">
+                            <img 
+                                src="https://yury-andrush-develop.netlify.app/assets/images/icons/instagram-icon.svg"
+                                alt="Icon of the instagram and it's link"
+                                width="19"
+                                height="19"
+                                class="image" 
+                            />
+                        </a>
+                    </li>
+                </ul>
+            </address>
+        </section>
+    
+        <section class="footer__section">
+            <h2 class="heading footer__heading">Company</h2>
+    
+            <ul class="list" role="list">
+                <li>
+                    <a class="link" href="./women">Women</a>
+                </li>
+    
+                <li>
+                    <a class="link" href="./men">Men</a>
+                </li>
+    
+                <li>
+                    <a class="link" href="./kids">Kids</a>
+                </li>
+    
+                <li>
+                    <a class="link" href="./about-us">About Us</a>
+                </li>
+    
+                <li>
+                    <a class="link" href="./our-materials">Our Materials</a>
+                </li> 
+            </ul>
+        </section>
+    
+        <section class="footer__section">
+            <h2 class="heading footer__heading">Useful Links</h2>
+    
+            <ul class="list" role="list">
+                <li>
+                    <a class="link" href="./privacy-policy">Privacy Policy</a>
+                </li>
+    
+                <li>
+                    <a class="link" href="./shipping-policy">Shipping Policy</a>
+                </li>
+    
+                <li>
+                    <a class="link" href="./return-refund-policy">Return & Refund Policy</a>
+                </li>
+    
+                <li>
+                    <a class="link" href="./terms-of-service">Terms of Service </a>
+                </li>
+    
+                <li>
+                    <a class="link" href="./contact-us">Contact Us</a>
+                </li> 
+            </ul>
+        </section>
+    </div>
+    
+    <small class="footer__copyrights">© Susparsa 2021</small>
+</footer>
+
+{% schema %}
+  {
+    "name": "footer",
+    "max_blocks": 4,
+    "blocks": [
+      {
+        "type": "About",
+        "name": "about",
+        "settings" : [
+          {
+            "type": "text",
+            "id": "footer_about_heading",
+            "label": "Заголовок",
+            "default": "About"
+          },
+          {
+            "type": "richtext",
+            "id": "footer_about_text",
+            "label": "Текст",
+            "default": "<p>Susparsa Store<br>Geneva, Switzerland</p>"
+          },
+          {
+            "type": "text",
+            "id": "footer_about-facebook",
+            "label": "FB",
+            "default": "https://www.facebook.com"
+          },
+          {
+            "type": "text",
+            "id": "footer_about-instagram",
+            "label": "Instagram",
+            "default": "https://www.instagram.com"
+          }
+        ]
+      },
+      {
+        "type": "Menu",
+        "name": "menu",
+        "settings" : [
+          {
+            "type": "text",
+            "id": "footer_menu_heading",
+            "label": "Заголовок",
+            "default": "Company"
+          },
+          {
+            "type": "link_list",
+            "id": "footer_menu_list",
+            "label": "Меню"
+          }
+        ]
+      }   
+    ]
+  }
+{% endschema %}

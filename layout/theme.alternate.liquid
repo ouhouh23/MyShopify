@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Shop template</title>
+
+    <link rel="stylesheet" href="https://yury-andrush-develop.netlify.app/index.css" />
+
+    <script src="https://yury-andrush-develop.netlify.app/index.js" defer></script>
+
+    {{ content_for_header }}
+</head>
+
+<body>
+    {% section 'alternate-header' %}
+
+    {% render 'alternate-breadcrumbs' %}
+    
+    {{ content_for_layout }}
+      
+    {% section 'alternate-footer' %}
+</body>
+</html>
