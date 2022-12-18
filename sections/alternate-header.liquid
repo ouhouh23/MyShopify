@@ -1,5 +1,7 @@
 <header class="header wrapper">
-    <nav class="header__navigation header__navigation--primary" aria-label="Website navigation">
+    <a href="#" class="link skip-link">Skip to content</a>
+
+    <nav class="header__navigation header__navigation--primary" aria-label="Primary">
         <ul class="list header__list header__list--primary" role="list">
             <li>
                 <a class="link" href="./women">Women</a>
@@ -22,14 +24,14 @@
     <a class="header__logo" href="./home">
         <img 
             src="https://susparsa-deploy-yury-andrush.netlify.app/assets/images/logo.svg" 
-            alt="" 
+            alt="to the home page"a
             width="139" 
             height="32"
             class="image header__image" 
         />
     </a>
     
-    <nav class="header__navigation header__navigation--secondary" aria-label="Personal navigation">
+    <nav class="header__navigation header__navigation--secondary" aria-label="Personal">
         <ul class="list header__list header__list--secondary" role="list">
             <li>
                 <a class="link" href="./account">Account</a>
@@ -40,8 +42,11 @@
             </li>
     
             <li>
-                <a class="link" href="./cart">
-                    Cart (<span data-cart-counter>0</span>)
+                <a class="link" aria-labelledby="cart-status" href="./cart">
+                    <span role="status" id="cart-status" aria-live="polite">
+                        <span class="visually-hidden">Items in</span>
+                            Cart (<span data-cart-counter>0</span>)
+                    </span>
                 </a>
             </li>
         </ul> 

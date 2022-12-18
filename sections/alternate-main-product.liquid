@@ -1,4 +1,4 @@
-<main>
+<main id="main" class="main" tabindex="-1">
 <article aria-labelledby="heading-primary" class="product wrapper">
     <div class="product__group">
         <section class="description product__description">
@@ -107,7 +107,7 @@
 
                 <fieldset class="fieldset form__filter form__filter--colored" data-color-group>
                     <legend class="form__legend">
-                        Color - <span data-color>White</span>
+                        Color - <span data-color aria-hidden="true">White</span>
                     </legend>
 
                     <div class="form__item form__item--white">
@@ -126,7 +126,7 @@
                             data-tooltip="White"
                             class="form__label form__label--colored"
                         >
-                            <span class="visually-hidden">White color</span>
+                            <span class="visually-hidden">White</span>
                         </label>
                     </div>
 
@@ -145,7 +145,7 @@
                             data-tooltip="Black"
                             class="form__label form__label--colored"
                         >
-                            <span class="visually-hidden">Black color</span>
+                            <span class="visually-hidden">Black</span>
                         </label>
                     </div>
 
@@ -164,7 +164,7 @@
                             data-tooltip="Gray latte"
                             class="form__label form__label--colored"
                         >
-                            <span class="visually-hidden">Gray latte color</span>
+                            <span class="visually-hidden">Gray latte</span>
                         </label>
                     </div>
 
@@ -183,7 +183,7 @@
                             data-tooltip="Purple latte"
                             class="form__label form__label--colored"
                         >
-                            <span class="visually-hidden">Purple latte color</span>
+                            <span class="visually-hidden">Purple latte</span>
                         </label>
                     </div>
 
@@ -203,7 +203,7 @@
                             data-tooltip="Pink latte"
                             class="form__label form__label--colored"
                         >
-                            <span class="visually-hidden">Pink latte color</span>
+                            <span class="visually-hidden">Pink latte</span>
                         </label>
                     </div>
 
@@ -223,7 +223,7 @@
                             data-tooltip="Orange latte"
                             class="form__label form__label--colored"
                         >
-                            <span class="visually-hidden">Orange latte color</span>
+                            <span class="visually-hidden">Orange latte</span>
                         </label>
                     </div>
                 </fieldset>
@@ -236,13 +236,26 @@
                         type="number"
                         name="quantity-input" 
                         class="input-number counter__input"
+                        aria-label="items quantity"
+                        aria-live="polite"
+                        aria-atomic="true"
                     />
 
-                    <button type="button" class="button counter__button" data-decrease>
+                    <button
+                        data-decrease
+                        type="button"
+                        class="button counter__button"
+                        aria-label="Decrease"
+                    > 
                         −
                     </button>
 
-                    <button type="button" class="button counter__button counter__button--increase" data-increase>
+                    <button
+                        data-increase
+                        type="button" 
+                        class="button counter__button counter__button--increase"
+                        aria-label="Increase"
+                    >
                         +
                     </button>
                 </fieldset>
