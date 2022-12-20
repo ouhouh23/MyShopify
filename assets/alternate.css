@@ -706,6 +706,12 @@ body {
 	opacity: 0.8;
 }
 
+.card__image {
+	width: 100%;
+	aspect-ratio: 0.9;
+	object-fit: cover;
+}
+
 .card__heading {
 	font-size: var(--font-md);
 	margin-top: 1.25rem;
