@@ -1,0 +1,46 @@
+<li>
+    <article aria-labelledby="card-heading-1" class="card">
+        {%- if recommendation.available != true -%}
+            <ul class="list tags card__tags" role="list">
+                <li class="tags__item">
+                    <span>{{ 'products.product.sold_out' | t }}</span>
+                </li>
+            </ul>
+        {%-endif -%}
+        <img 
+            src="{{ recommendation.featured_image | image_url: width: 248}}" 
+            alt="image of the {{ recommendation.featured_image.alt }}"
+            width="248" 
+            height="368"
+            class="image card__image" 
+        />
+      
+        <h3 class="heading card__heading" id="card-heading-1">
+            <a class="link card__link" href="{{ recommendation.url }}">
+                {{ recommendation.title }}
+            </a>
+        </h3>
+
+        <ul class="list card__list" role="list">
+            <li class="card__item card__item--brown">
+                <span class="visually-hidden">Brown latte color available</span>
+            </li>
+
+            <li class="card__item card__item--orange">
+                <span class="visually-hidden">Orange latte color available</span>
+            </li>
+
+            <li class="card__item card__item--pink">
+                <span class="visually-hidden">Pink latte color available</span>
+            </li>
+
+            <li class="card__item card__item--purple">
+                <span class="visually-hidden">Purple color available</span>
+            </li>
+        </ul>
+
+        <span>
+            {{ recommendation.price | money_with_currency }}
+        </span>
+    </article>
+</li>

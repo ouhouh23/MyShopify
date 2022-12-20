@@ -4,14 +4,14 @@
         <section class="description product__description">
             <header class="description__section description__section--top">
                  <h1 class="heading description__heading" id="heading-primary">
-                    White unisex t-shirt
+                    {{ product.title }}                   
                 </h1>
 
                 <span class="description__caption">
-                    <abbr>CHF</abbr> <span>40</span>
+                    {{ product.price | money_with_currency }}
                 </span>
 
-                <small class="description__note">Tax included</small>
+                <small class="description__note">{{ 'products.product.include_taxes' | t }}</small>
             </header>
 
             <form class="form description__section" data-form>
@@ -229,7 +229,7 @@
                 </fieldset>
 
                 <fieldset data-counter class="fieldset counter">
-                    <legend class="form__legend">Quantity</legend>
+                    <legend class="form__legend">{{ 'products.product.quantity.label' | t }}</legend>
                     
                     <input
                         data-input 
@@ -268,7 +268,7 @@
                         class="button form__button form__button--secondary"
                         data-button-add
                     >
-                        Add to card
+                        {{ 'products.product.add_to_cart' | t }}
                     </button>
 
                     <button 
@@ -283,21 +283,17 @@
                 </div>
             </form>
 
-            <footer class="description__section description__section--bottom">
-                <p class="paragraph description__paragraph">
-                    A unisex basic garment with a loose fit. Light and comfortable to your skin.
-                </p>
-
-                <p class="paragraph description__paragraph">
-                    Certification of cotton - <abbr>GOTS</abbr>
-                </p>
-            </footer>
+            {%- if product.description != blank-%}
+                <footer class="description__section description__section--bottom user-description">
+                    {{ product.description }}       
+                </footer>
+            {%- endif -%}
         </section>
 
         <div class="product__illustration">
           <img 
               src="{{ product.featured_image | image_url: width: 473}}" 
-              alt="Image of the selected t-shirt"
+              alt="image of the {{ product.featured_image.alt}}"
               width="473" 
               height="707"
               class="image product__image"
@@ -305,51 +301,27 @@
         </div>
     </div>
 
-    <ul class="list product__accordion accordion" role="list" data-accordion>
-        <li class="accordion__item">
-            <details open="open" class="accordion__element" data-details>
-                <summary class="accordion__summary" data-summary>
-                    <h2 class="heading accordion__heading">
-                        Sizing & Fit
-                    </h2>
-                </summary>
+    {%- if section.blocks.size > 0 -%}
+        <ul class="list product__accordion accordion" role="list" data-accordion>
 
-                <div class="accordion__collapse" data-details-collapse>
-                    <p class="paragraph">
-                        Olga is 175<abbr>cm</abbr>, she is wearing a size <abbr>S</abbr>.
-                    </p>
-                </div>
-            </details>
-        </li>
+        {%- for block in section.blocks -%}
+            <li class="accordion__item">
+                <details class="accordion__element" data-details>
+                    <summary class="accordion__summary" data-summary>
+                        <h2 class="heading accordion__heading">
+                            {{ block.settings.accordion_item_heading }}
+                        </h2>
+                    </summary>
 
-        <li class="accordion__item">
-            <details class="accordion__element" data-details>
-                <summary class="accordion__summary" data-summary>
-                    <h2 class="heading accordion__heading">
-                        Composition & Care
-                    </h2>
-                </summary>
-
-                <div class="accordion__collapse" data-details-collapse>
-                    <p class="paragraph">Some text here.</p>
-                </div>
-            </details>
-        </li>
-
-        <li class="accordion__item">
-            <details class="accordion__element" data-details>
-                <summary class="accordion__summary" data-summary>
-                    <h2 class="heading accordion__heading">
-                        Delivery & Returns
-                    </h2>
-                </summary>
-
-                <div class="accordion__collapse" data-details-collapse>
-                    <p class="paragraph">Some text here.</p>
-                </div>
-            </details> 
-        </li>
-    </ul>
+                    <div class="accordion__collapse" data-details-collapse>
+                        <p class="paragraph">
+                            {{ block.settings.accordion_item_text }}
+                        </p>
+                    </div>
+                </details>
+            </li>
+        {%- endfor -%}
+    {%- endif -%}
 </article>
 </main>
 

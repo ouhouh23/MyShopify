@@ -3,14 +3,42 @@
   "sections": {
     "product-main": {
       "type": "Alternate-main-product",
+      "blocks": {
+        "f21661bd-cb27-4839-9e73-35b49e3d3a30": {
+          "type": "Accordion",
+          "settings": {
+            "accordion_item_heading": "Sizing & Fit",
+            "accordion_item_text": "<p>Some text here.<\/p>"
+          }
+        },
+        "b9e34d70-f19a-43f2-af61-5c15a474898e": {
+          "type": "Accordion",
+          "settings": {
+            "accordion_item_heading": "Composition & Care",
+            "accordion_item_text": "<p>Some text here.<\/p>"
+          }
+        },
+        "a3459f09-9ac5-4b26-a1c1-daac47c279f7": {
+          "type": "Accordion",
+          "settings": {
+            "accordion_item_heading": "Delivery & Returns",
+            "accordion_item_text": "<p>Some text here.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "f21661bd-cb27-4839-9e73-35b49e3d3a30",
+        "b9e34d70-f19a-43f2-af61-5c15a474898e",
+        "a3459f09-9ac5-4b26-a1c1-daac47c279f7"
+      ],
       "settings": {
       }
     },
     "382a126f-6379-4c43-93df-daf8c17e9eb1": {
       "type": "alternate-recommendations",
       "settings": {
-        "recommendation_heading": "You may also like test",
-        "product_collection": "",
+        "recommendation_heading": "You may also like",
+        "product_collection": "unsorted",
         "product_quantity": 3
       }
     }

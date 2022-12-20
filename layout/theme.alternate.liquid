@@ -7,9 +7,10 @@
 
     <title>Shop template</title>
 
-    <link rel="stylesheet" href="https://yury-andrush-develop.netlify.app/index.css" />
+    <link rel="stylesheet" href="{{ 'fonts.css' | asset_url }}" />
+    <link rel="stylesheet" href="{{ 'alternate.css' | asset_url }}" />
 
-    <script src="https://yury-andrush-develop.netlify.app/index.js" defer></script>
+    <script src="{{ 'alternate.js' | asset_url }}" defer></script>
 
     {{ content_for_header }}
 </head>

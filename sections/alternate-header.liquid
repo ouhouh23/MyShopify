@@ -3,49 +3,42 @@
 
     <nav class="header__navigation header__navigation--primary" aria-label="Primary">
         <ul class="list header__list header__list--primary" role="list">
-            <li>
-                <a class="link" href="./women">Women</a>
-            </li>
-    
-            <li>
-                <a class="link" href="./men">Men</a>
-            </li>
-    
-            <li>
-                <a class="link" href="./kids">Kids</a>
-            </li>
-    
-            <li>
-                <a class="link" href="./company">Company</a>
-            </li>
+            {%- for link in section.settings.main-menu.links -%}
+                <li>
+                    <a class="link" href="{{ link.url }}">{{ link.title }}</a>
+                </li>
+            {%- endfor -%}
         </ul> 
     </nav>
-    
-    <a class="header__logo" href="./home">
-        <img 
-            src="https://susparsa-deploy-yury-andrush.netlify.app/assets/images/logo.svg" 
-            alt="to the home page"a
-            width="139" 
-            height="32"
-            class="image header__image" 
-        />
-    </a>
+
+    {%- if section.settings.logo != blank  -%}
+        {%- assign logo-alt = section.settings.logo.alt | default: 'to the home page' -%}
+
+        <a class="header__logo" href="{{ routes.root_url }}"> 
+            {{ section.settings.logo | image_url: width: 70 | image_tag: 
+                class: 'header__logo',
+                width: 70,
+                height: 70,
+                alt: logo-alt
+            }}
+        </a>
+    {%- endif -%}
     
     <nav class="header__navigation header__navigation--secondary" aria-label="Personal">
         <ul class="list header__list header__list--secondary" role="list">
             <li>
-                <a class="link" href="./account">Account</a>
+                <a class="link" href="{{ routes.account_url }}">{{ 'customer.account.title' | t }}</a>
             </li>
     
             <li>
-                <a class="link" href="./search">Search</a>
+                <a class="link" href="{{ routes.search_url }}">{{ 'general.search.search' | t }}</a>
             </li>
     
             <li>
-                <a class="link" aria-labelledby="cart-status" href="./cart">
+                <a class="link" aria-labelledby="cart-status" href="{{ routes.cart_url }}">
                     <span role="status" id="cart-status" aria-live="polite">
                         <span class="visually-hidden">Items in</span>
-                            Cart (<span data-cart-counter>0</span>)
+                            {{ 'templates.cart.cart' | t }} (<span data-cart-counter>0</span>)
                     </span>
                 </a>
             </li>
@@ -61,13 +54,14 @@
     "settings": [
       {
         "type": "image_picker",
-        "id": "header_logo_image",
+        "id": "logo",
         "label": "Логотип"
       },
       {
         "type": "link_list",
-        "id": "menu",
-        "label": "Меню"
+        "id": "main-menu",
+        "label": "Меню",
+        "default": "main-menu"
       }
     ]
   }

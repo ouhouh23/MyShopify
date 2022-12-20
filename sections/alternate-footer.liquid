@@ -1,98 +1,76 @@
 <hr class="break" />
 
 <footer class="footer wrapper">
-    <div class="footer__container">
-        <section class="footer__section">
-            <h2 class="heading footer__heading">About</h2>
-    
-            <address class="footer__address">
-                <p>
-                    Susparsa Store
-                    <br>
-                    Geneva, Switzerland
-                </p>
-        
-                <ul class="list socials footer__socials" role="list">
-                    <li>
-                        <a href="https://www.facebook.com">
-                            <img 
-                                src="https://yury-andrush-develop.netlify.app/assets/images/icons/facebook-icon.svg"
-                                alt="Icon of the facebook and it's link"
-                                width="9"
-                                height="19"
-                                class="image" 
-                            />
-                        </a>
-                    </li>
-    
-                    <li>
-                        <a href="https://www.instagram.com">
-                            <img 
-                                src="https://yury-andrush-develop.netlify.app/assets/images/icons/instagram-icon.svg"
-                                alt="Icon of the instagram and it's link"
-                                width="19"
-                                height="19"
-                                class="image" 
-                            />
-                        </a>
-                    </li>
-                </ul>
-            </address>
-        </section>
-    
-        <section class="footer__section">
-            <h2 class="heading footer__heading">Company</h2>
-    
-            <ul class="list" role="list">
-                <li>
-                    <a class="link" href="./women">Women</a>
-                </li>
-    
-                <li>
-                    <a class="link" href="./men">Men</a>
-                </li>
-    
-                <li>
-                    <a class="link" href="./kids">Kids</a>
-                </li>
-    
-                <li>
-                    <a class="link" href="./about-us">About Us</a>
-                </li>
-    
-                <li>
-                    <a class="link" href="./our-materials">Our Materials</a>
-                </li> 
-            </ul>
-        </section>
-    
-        <section class="footer__section">
-            <h2 class="heading footer__heading">Useful Links</h2>
-    
-            <ul class="list" role="list">
-                <li>
-                    <a class="link" href="./privacy-policy">Privacy Policy</a>
-                </li>
-    
-                <li>
-                    <a class="link" href="./shipping-policy">Shipping Policy</a>
-                </li>
-    
-                <li>
-                    <a class="link" href="./return-refund-policy">Return & Refund Policy</a>
-                </li>
-    
-                <li>
-                    <a class="link" href="./terms-of-service">Terms of Service </a>
-                </li>
-    
-                <li>
-                    <a class="link" href="./contact-us">Contact Us</a>
-                </li> 
-            </ul>
-        </section>
-    </div>
-    
+    {%- if section.blocks.size > 0 -%}
+        <div class="footer__container">
+            {%- for block in section.blocks -%}
+                <section class="footer__section">                    
+                    {%- case block.type -%}
+                        {%- when 'About' -%}
+                            {%- if block.settings.footer_about_heading != blank -%}
+                                <h2 class="heading footer__heading">{{ block.settings.footer_about_heading }}</h2>
+                            {%- endif -%}
+
+                            {%- if block.settings.footer_about_text != blank or block.settings.footer_about-facebook != blank or
+                              block.settings.footer_about-instagram != blank -%}
+                                <address class="footer__address">
+                                    {%- if block.settings.footer_about_text != blank -%}
+                                        {{ block.settings.footer_about_text }}
+                                    {%- endif -%}
+                            
+                                    {%- if block.settings.footer_about-facebook != blank or block.settings.footer_about-instagram != blank -%}                                   
+                                        <ul class="list socials footer__socials" role="list">
+                                            {%- if block.settings.footer_about-facebook != blank -%}
+                                                <li>
+                                                    <a href="{{ block.settings.footer_about-facebook }}">
+                                                        <img 
+                                                            src="https://yury-andrush-develop.netlify.app/assets/images/icons/facebook-icon.svg"
+                                                            alt="Icon of the facebook and it's link"
+                                                            width="9"
+                                                            height="19"
+                                                            class="image" 
+                                                        />
+                                                    </a>
+                                                </li>
+                                            {%- endif -%}
+                                            
+                                            {%- if block.settings.footer_about-instagram != blank -%}
+                                                <li>
+                                                    <a href="{{ block.settings.footer_about-instagram }}">
+                                                        <img 
+                                                            src="https://yury-andrush-develop.netlify.app/assets/images/icons/instagram-icon.svg"
+                                                            alt="Icon of the instagram and it's link"
+                                                            width="19"
+                                                            height="19"
+                                                            class="image" 
+                                                        />
+                                                    </a>
+                                                </li>
+                                            {%- endif -%}
+                                        </ul>
+                                    {%- endif -%}
+                                </address>
+                            {%- endif-%}
+                        {%- when 'Menu' -%}
+                             {%- if block.settings.footer_menu_heading != blank -%}
+                                <h2 class="heading footer__heading">{{ block.settings.footer_menu_heading }}</h2>
+                            {%- endif -%}
+
+                            {%- if block.settings.footer_menu_list != blank -%}
+                                <ul class="list" role="list">
+                                    {%- for link in block.settings.footer_menu_list.links -%}
+                                        <li>
+                                            <a class="link" href="{{ link.url }}">{{ link.title }}</a>
+                                        </li>
+                                    {%- endfor -%}
+                                </ul>
+                            {%- endif -%}                       
+                    {%- endcase -%}
+                </section>
+            {%- endfor -%}  
+        </div>
+    {%- endif -%}
+
     <small class="footer__copyrights">© Susparsa 2021</small>
 </footer>
 
@@ -144,7 +122,8 @@
           {
             "type": "link_list",
             "id": "footer_menu_list",
-            "label": "Меню"
+            "label": "Меню",
+            "default": "main-menu"
           }
         ]
       }   

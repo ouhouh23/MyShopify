@@ -210,6 +210,48 @@
         "settings": {
           "color_scheme": "background-1"
         }
+      },
+      "alternate-header": {
+        "type": "alternate-header",
+        "settings": {
+          "logo": "shopify:\/\/shop_images\/logo_05cc113e-fb0a-46d4-80b2-83420ba3624f.png",
+          "main-menu": "testmenu"
+        }
+      },
+      "alternate-footer": {
+        "type": "alternate-footer",
+        "blocks": {
+          "96a6e28c-e5dd-4aa6-bae9-1e986ef2bd10": {
+            "type": "About",
+            "settings": {
+              "footer_about_heading": "About",
+              "footer_about_text": "<p>Susparsa Store<br\/>Geneva, Switzerland<\/p>",
+              "footer_about-facebook": "https:\/\/www.facebook.com",
+              "footer_about-instagram": "https:\/\/www.instagram.com"
+            }
+          },
+          "884f78c3-b56c-4740-af16-aa9e3132baff": {
+            "type": "Menu",
+            "settings": {
+              "footer_menu_heading": "Company",
+              "footer_menu_list": "custom-footer-shop-menu"
+            }
+          },
+          "75da5248-c3be-4183-8eb6-2c8a11d7d991": {
+            "type": "Menu",
+            "settings": {
+              "footer_menu_heading": "Useful links",
+              "footer_menu_list": "custom-footer-info-menu"
+            }
+          }
+        },
+        "block_order": [
+          "96a6e28c-e5dd-4aa6-bae9-1e986ef2bd10",
+          "884f78c3-b56c-4740-af16-aa9e3132baff",
+          "75da5248-c3be-4183-8eb6-2c8a11d7d991"
+        ],
+        "settings": {
+        }
       }
     },
     "content_for_index": [
