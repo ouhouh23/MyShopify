@@ -32,7 +32,7 @@
     {%- endif -%}
 {%- endcapture -%}
 
-<section class="footer__section">
+{%- capture block-content -%}
     {%- if block.settings.footer_about_heading != blank -%}
         <h2 class="heading footer__heading">{{ block.settings.footer_about_heading }}</h2>
     {%- endif -%}
@@ -45,7 +45,11 @@
 
             {{ footer-socials }}
         </address>
-    {%- else -%}
-            {{ footer-socials }}
     {%- endif -%}
-</section>
+{%- endcapture -%}
+
+{%- if block-content != blank -%}
+    <section class="footer__section">
+        {{ block-content }}
+    </section>
+{%- endif -%}

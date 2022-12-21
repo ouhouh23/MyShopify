@@ -7,7 +7,9 @@
                 for block in section.blocks                   
                     case block.type
                         when 'About'
-                            render 'alternate-footer-(footer-about)', block: block
+                            if block != blank
+                              render 'alternate-footer-(footer-about)', block: block
+                            endif
                         when 'Menu'
                             render 'alternate-footer-(footer-menu)', block: block                      
                     endcase
@@ -31,29 +33,25 @@
           {
             "type": "text",
             "id": "footer_about_heading",
-            "label": "Заголовок",
-            "default": "About"
+            "label": "Заголовок"
           },
 
           {
             "type": "richtext",
             "id": "footer_about_text",
-            "label": "Текст",
-            "default": "<p>Susparsa Store<br>Geneva, Switzerland</p>"
+            "label": "Текст"
           },
 
           {
             "type": "text",
             "id": "footer_about-facebook",
-            "label": "FB",
-            "default": "https://www.facebook.com"
+            "label": "FB"
           },
 
           {
             "type": "text",
             "id": "footer_about-instagram",
-            "label": "Instagram",
-            "default": "https://www.instagram.com"
+            "label": "Instagram"
           }
         ]
       },
@@ -65,15 +63,13 @@
           {
             "type": "text",
             "id": "footer_menu_heading",
-            "label": "Заголовок",
-            "default": "Company"
+            "label": "Заголовок"
           },
 
           {
             "type": "link_list",
             "id": "footer_menu_list",
-            "label": "Меню",
-            "default": "main-menu"
+            "label": "Меню"
           }
         ]
       }   

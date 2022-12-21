@@ -1,4 +1,4 @@
-<section class="footer__section">
+{%- capture block-content -%}
     {%- if block.settings.footer_menu_heading != blank -%}
         <h2 class="heading footer__heading">{{ block.settings.footer_menu_heading }}</h2>
     {%- endif -%}
@@ -12,4 +12,11 @@
             {%- endfor -%}
         </ul>
     {%- endif -%}
-</section> 
+{%- endcapture -%}
+
+{%- if block-content != blank -%}
+    <section class="footer__section">
+        {{ block-content }}
+    </section> 
+{%- endif -%}
+
