@@ -3,71 +3,16 @@
 <footer class="footer wrapper">
     {%- if section.blocks.size > 0 -%}
         <div class="footer__container">
-            {%- for block in section.blocks -%}
-                <section class="footer__section">                    
-                    {%- case block.type -%}
-                        {%- when 'About' -%}
-                            {%- if block.settings.footer_about_heading != blank -%}
-                                <h2 class="heading footer__heading">{{ block.settings.footer_about_heading }}</h2>
-                            {%- endif -%}
-
-                            {%- if block.settings.footer_about_text != blank or block.settings.footer_about-facebook != blank or
-                              block.settings.footer_about-instagram != blank -%}
-                                <address class="footer__address">
-                                    {%- if block.settings.footer_about_text != blank -%}
-                                        {{ block.settings.footer_about_text }}
-                                    {%- endif -%}
-                            
-                                    {%- if block.settings.footer_about-facebook != blank or block.settings.footer_about-instagram != blank -%}                                   
-                                        <ul class="list socials footer__socials" role="list">
-                                            {%- if block.settings.footer_about-facebook != blank -%}
-                                                <li>
-                                                    <a href="{{ block.settings.footer_about-facebook }}">
-                                                        <img 
-                                                            src="https://yury-andrush-develop.netlify.app/assets/images/icons/facebook-icon.svg"
-                                                            alt="Icon of the facebook and it's link"
-                                                            width="9"
-                                                            height="19"
-                                                            class="image" 
-                                                        />
-                                                    </a>
-                                                </li>
-                                            {%- endif -%}
-                                            
-                                            {%- if block.settings.footer_about-instagram != blank -%}
-                                                <li>
-                                                    <a href="{{ block.settings.footer_about-instagram }}">
-                                                        <img 
-                                                            src="https://yury-andrush-develop.netlify.app/assets/images/icons/instagram-icon.svg"
-                                                            alt="Icon of the instagram and it's link"
-                                                            width="19"
-                                                            height="19"
-                                                            class="image" 
-                                                        />
-                                                    </a>
-                                                </li>
-                                            {%- endif -%}
-                                        </ul>
-                                    {%- endif -%}
-                                </address>
-                            {%- endif-%}
-                        {%- when 'Menu' -%}
-                             {%- if block.settings.footer_menu_heading != blank -%}
-                                <h2 class="heading footer__heading">{{ block.settings.footer_menu_heading }}</h2>
-                            {%- endif -%}
-
-                            {%- if block.settings.footer_menu_list != blank -%}
-                                <ul class="list" role="list">
-                                    {%- for link in block.settings.footer_menu_list.links -%}
-                                        <li>
-                                            <a class="link" href="{{ link.url }}">{{ link.title }}</a>
-                                        </li>
-                                    {%- endfor -%}
-                                </ul>
-                            {%- endif -%}                       
-                    {%- endcase -%}
-                </section>
-            {%- endfor -%}  
+            {% liquid
+                for block in section.blocks                   
+                    case block.type
+                        when 'About'
+                            render 'alternate-footer-(footer-about)', block: block
+                        when 'Menu'
+                            render 'alternate-footer-(footer-menu)', block: block                      
+                    endcase
+                endfor
+            %}  
         </div>
     {%- endif -%}
 

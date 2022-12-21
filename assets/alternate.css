@@ -170,10 +170,6 @@ body {
 	margin-bottom: 0;
 }
 
-.user-description p {
-	font-size: var(--font-lg);
-}
-
 .user-description :where(h1, h2, h3, h4, h5, h6) {
 	font-weight: var(--weight-primary);
 }
@@ -385,6 +381,7 @@ body {
 
 .description__section--bottom {
 	letter-spacing: var(--spacing-negative);
+	font-size: var(--font-lg);
 	margin-top: 3rem;
 }
 

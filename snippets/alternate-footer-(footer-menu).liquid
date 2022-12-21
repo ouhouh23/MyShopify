@@ -1,0 +1,15 @@
+<section class="footer__section">
+    {%- if block.settings.footer_menu_heading != blank -%}
+        <h2 class="heading footer__heading">{{ block.settings.footer_menu_heading }}</h2>
+    {%- endif -%}
+
+    {%- if block.settings.footer_menu_list != blank -%}
+        <ul class="list" role="list">
+            {%- for link in block.settings.footer_menu_list.links -%}
+                <li>
+                    <a class="link" href="{{ link.url }}">{{ link.title }}</a>
+                </li>
+            {%- endfor -%}
+        </ul>
+    {%- endif -%}
+</section> 

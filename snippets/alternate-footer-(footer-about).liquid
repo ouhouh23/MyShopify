@@ -1,0 +1,51 @@
+{%- capture footer-socials -%}
+    {%- if block.settings.footer_about-facebook != blank or block.settings.footer_about-instagram != blank -%}
+        <ul class="list socials footer__socials" role="list">
+            {%- if block.settings.footer_about-facebook != blank -%}
+                <li>
+                    <a href="{{ block.settings.footer_about-facebook }}">
+                        <img 
+                            src="https://yury-andrush-develop.netlify.app/assets/images/icons/facebook-icon.svg"
+                            alt="Icon of the facebook and it's link"
+                            width="9"
+                            height="19"
+                            class="image" 
+                        />
+                    </a>
+                </li>
+            {%- endif -%}
+    
+            {%- if block.settings.footer_about-instagram != blank -%}
+                <li>
+                    <a href="{{ block.settings.footer_about-instagram }}">
+                        <img 
+                            src="https://yury-andrush-develop.netlify.app/assets/images/icons/instagram-icon.svg"
+                            alt="Icon of the instagram and it's link"
+                            width="19"
+                            height="19"
+                            class="image" 
+                        />
+                    </a>
+                </li>
+            {%- endif -%}
+        </ul>
+    {%- endif -%}
+{%- endcapture -%}
+
+<section class="footer__section">
+    {%- if block.settings.footer_about_heading != blank -%}
+        <h2 class="heading footer__heading">{{ block.settings.footer_about_heading }}</h2>
+    {%- endif -%}
+
+    {%- if block.settings.footer_about_text != blank -%}
+        <address class="footer__address">
+            <div class="user-description">
+                {{ block.settings.footer_about_text }}
+            </div>
+
+            {{ footer-socials }}
+        </address>
+    {%- else -%}
+            {{ footer-socials }}
+    {%- endif -%}
+</section>
