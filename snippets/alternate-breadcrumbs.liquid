@@ -6,12 +6,16 @@
 
         {%- if product.collections.size > 0 -%}
             <li class="breadcrumb__item">
-                <a class="link" href="{{ product.collections.first.url }}">{{ product.collections.first.title }}</a>
+                <a class="link" href="{{ product.collections.first.url }}">
+                    {{ product.collections.first.title }}
+                </a>
             </li>
         {%- endif -%}
 
         <li class="breadcrumb__item breadcrumb__item--active">
-            <a class="link" href="#" aria-current="page">{{ product.title }}</a>
+            <a class="link" href="#" aria-current="page">
+                {{ product.title }}
+            </a>
         </li>
     </ol>
 </nav>

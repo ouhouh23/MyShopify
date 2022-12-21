@@ -1,22 +1,23 @@
 <header class="header wrapper">
-    <a href="#" class="link skip-link">Skip to content</a>
+    <a href="#main" class="link skip-link">Skip to content</a>
 
-    <nav class="header__navigation header__navigation--primary" aria-label="Primary">
-        <ul class="list header__list header__list--primary" role="list">
-            {%- for link in section.settings.main-menu.links -%}
-                <li>
-                    <a class="link" href="{{ link.url }}">{{ link.title }}</a>
-                </li>
-            {%- endfor -%}
-        </ul> 
-    </nav>
+    {%- if section.settings.main-menu.links != blank  -%}
+        <nav class="header__navigation header__navigation--primary" aria-label="Primary">
+            <ul class="list header__list header__list--primary" role="list">
+                {%- for link in section.settings.main-menu.links -%}
+                    <li>
+                        <a class="link" href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                {%- endfor -%}
+            </ul> 
+        </nav>
+    {%- endif -%}
 
     {%- if section.settings.logo != blank  -%}
         {%- assign logo-alt = section.settings.logo.alt | default: 'to the home page' -%}
 
         <a class="header__logo" href="{{ routes.root_url }}"> 
             {{ section.settings.logo | image_url: width: 70 | image_tag: 
-                class: 'header__logo',
                 width: 70,
                 height: 70,
                 alt: logo-alt
@@ -57,6 +58,7 @@
         "id": "logo",
         "label": "Логотип"
       },
+
       {
         "type": "link_list",
         "id": "main-menu",
@@ -66,4 +68,3 @@
     ]
   }
 {% endschema %}
-
