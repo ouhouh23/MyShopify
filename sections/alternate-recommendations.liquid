@@ -8,7 +8,7 @@
 
         <ul class="list cards" role="list">
             {%- for recommendation in section.settings.product_collection.products limit: section.settings.product_quantity -%}
-                {% render 'alternate-product-card', recommendation: recommendation %}
+                {% render 'alternate-product-card', recommendation: recommendation, index: forloop.index %}
             {%- endfor -%}
         </ul>
     </aside>

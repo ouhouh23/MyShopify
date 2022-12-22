@@ -15,7 +15,7 @@
             class="image card__image" 
         />
       
-        <h3 class="heading card__heading" id="card-heading-1">
+        <h3 class="heading card__heading" id="card-heading-{{ index }}">
             <a class="link card__link" href="{{ recommendation.url }}">
                 {{ recommendation.title | default: "Recommended product" }}
             </a>
