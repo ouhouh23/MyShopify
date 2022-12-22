@@ -17,7 +17,7 @@
       
         <h3 class="heading card__heading" id="card-heading-1">
             <a class="link card__link" href="{{ recommendation.url }}">
-                {{ recommendation.title }}
+                {{ recommendation.title | default: "Recommended product" }}
             </a>
         </h3>
 
@@ -39,8 +39,10 @@
             </li>
         </ul>
 
-        <span>
-            {{ recommendation.price | money_with_currency }}
-        </span>
+        {%- if recommendation.price != blank -%}
+            <span>
+                {{ recommendation.price | money_with_currency }}
+            </span>
+        {%- endif -%}
     </article>
 </li>

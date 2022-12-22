@@ -1,9 +1,11 @@
-{%- capture block-content -%}
-    {%- if block.settings.footer_menu_heading != blank -%}
-        <h2 class="heading footer__heading">{{ block.settings.footer_menu_heading }}</h2>
-    {%- endif -%}
+{%- if block.settings.footer_menu_list != blank -%}
+    <section class="footer__section">
+        {%- if block.settings.footer_menu_heading != blank -%}
+            <h2 class="heading footer__heading">
+                {{ block.settings.footer_menu_heading }}
+            </h2>
+        {%- endif -%}
 
-    {%- if block.settings.footer_menu_list != blank -%}
         <ul class="list" role="list">
             {%- for link in block.settings.footer_menu_list.links -%}
                 <li>
@@ -11,12 +13,5 @@
                 </li>
             {%- endfor -%}
         </ul>
-    {%- endif -%}
-{%- endcapture -%}
-
-{%- if block-content != blank -%}
-    <section class="footer__section">
-        {{ block-content }}
     </section> 
 {%- endif -%}
-

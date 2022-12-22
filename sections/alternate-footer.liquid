@@ -7,9 +7,7 @@
                 for block in section.blocks                   
                     case block.type
                         when 'About'
-                            if block != blank
-                              render 'alternate-footer-(footer-about)', block: block
-                            endif
+                            render 'alternate-footer-(footer-about)', block: block
                         when 'Menu'
                             render 'alternate-footer-(footer-menu)', block: block                      
                     endcase

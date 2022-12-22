@@ -3,15 +3,19 @@
     <div class="product__group">
         <section class="description product__description">
             <header class="description__section description__section--top">
-                 <h1 class="heading description__heading" id="heading-primary">
-                    {{ product.title }}                   
-                </h1>
+                {%- if product.title != blank -%}
+                     <h1 class="heading description__heading" id="heading-primary">
+                        {{ product.title }}                   
+                    </h1>
+                {%- endif -%}
 
-                <span class="description__caption">
-                    {{ product.price | money_with_currency }}
-                </span>
+                {%- if product.price != blank -%}
+                    <span class="description__caption">
+                        {{ product.price | money_with_currency }}
+                    </span>
 
-                <small class="description__note">{{ 'products.product.include_taxes' | t }}</small>
+                    <small class="description__note">{{ 'products.product.include_taxes' | t }}</small>
+                {%- endif -%}
             </header>
 
             <form class="form description__section" data-form>
@@ -291,36 +295,36 @@
         </section>
 
         <div class="product__illustration">
-          <img 
-              src="{{ product.featured_image | image_url: width: 473}}" 
-              alt="image of the {{ product.featured_image.alt}}"
-              width="473" 
-              height="707"
-              class="image product__image"
-          />
+            <img 
+                src="{{ product.featured_image | image_url: width: 473}}" 
+                alt="image of the {{ product.featured_image.alt}}"
+                width="473" 
+                height="707"
+                class="image product__image"
+                />
         </div>
     </div>
 
     {%- if section.blocks.size > 0 -%}
         <ul class="list product__accordion accordion" role="list" data-accordion>
+            {%- for block in section.blocks -%}
+                <li class="accordion__item">
+                    <details class="accordion__element" data-details>
+                        <summary class="accordion__summary" data-summary>
+                            <h2 class="heading accordion__heading">
+                                {{ block.settings.accordion_item_heading | default: 'Accordion heading.' }}
+                            </h2>
+                        </summary>
 
-        {%- for block in section.blocks -%}
-            <li class="accordion__item">
-                <details class="accordion__element" data-details>
-                    <summary class="accordion__summary" data-summary>
-                        <h2 class="heading accordion__heading">
-                            {{ block.settings.accordion_item_heading }}
-                        </h2>
-                    </summary>
-
-                    <div class="accordion__collapse" data-details-collapse>
-                        <p class="paragraph">
-                            {{ block.settings.accordion_item_text }}
-                        </p>
-                    </div>
-                </details>
-            </li>
-        {%- endfor -%}
+                        <div class="accordion__collapse" data-details-collapse>
+                            <p class="paragraph">
+                                {{ block.settings.accordion_item_text | default: 'Accordion collapse.'}}
+                            </p>
+                        </div>
+                    </details>
+                </li>
+            {%- endfor -%}
+        </ul>
     {%- endif -%}
 </article>
 </main>
@@ -338,9 +342,9 @@
           {
             "type": "text",
             "id": "accordion_item_heading",
-            "label": "Заголовок",
-            "default": "Accordion heading"
+            "label": "Заголовок"
           },
+          
           {
             "type": "richtext",
             "id": "accordion_item_text",
@@ -349,6 +353,7 @@
         ]
       }
     ],
+    
     "presets": [
       {
         "name": "alternate-main-product"
