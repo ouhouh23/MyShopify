@@ -7,9 +7,19 @@
         {%- endif -%}
 
         <ul class="list cards" role="list">
-            {%- for recommendation in section.settings.product_collection.products limit: section.settings.product_quantity -%}
-                {% render 'alternate-product-card', recommendation: recommendation, index: forloop.index %}
-            {%- endfor -%}
+            {% liquid
+                assign count = 0 
+                for recommendation in section.settings.product_collection.products
+                    if count == section.settings.product_quantity 
+                        break 
+                    endif
+
+                    if recommendation.id != product.id 
+                        render 'alternate-product-card', recommendation: recommendation, index: forloop.index 
+                        assign count = count | plus: 1
+                    endif 
+                endfor
+            %} 
         </ul>
     </aside>
 {%- endif -%}
