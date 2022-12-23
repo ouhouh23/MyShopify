@@ -1,5 +1,12 @@
+<script src="{{ 'alternate-main-product.js' | asset_url }}" type="module"></script>
+
 <main id="main" class="main" tabindex="-1">
-<article aria-labelledby="heading-primary" class="product wrapper">
+<article 
+    aria-labelledby="heading-primary" 
+    class="product wrapper"
+    data-section-id="{{- section.id -}}"
+    data-section-type="alternate-main-product"
+>
     <div class="product__group">
         <section class="description product__description">
             <header class="description__section description__section--top">
@@ -308,7 +315,7 @@
     {%- if section.blocks.size > 0 -%}
         <ul class="list product__accordion accordion" role="list" data-accordion>
             {%- for block in section.blocks -%}
-                <li class="accordion__item">
+                <li {{ block.shopify_attributes }} class="accordion__item">
                     <details class="accordion__element" data-details>
                         <summary class="accordion__summary" data-summary>
                             <h2 class="heading accordion__heading">

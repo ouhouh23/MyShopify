@@ -9,8 +9,14 @@
 
     <link rel="stylesheet" href="{{ 'fonts.css' | asset_url }}" />
     <link rel="stylesheet" href="{{ 'alternate.css' | asset_url }}" />
+    
+    <script src="https://unpkg.com/@shopify/theme-sections@4.1.1/dist/theme-sections.min.js" defer></script>
 
-    <script src="{{ 'alternate.js' | asset_url }}" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Shopify.theme.sections.load('*')
+        })
+    </script>
 
     {{ content_for_header }}
 </head>
