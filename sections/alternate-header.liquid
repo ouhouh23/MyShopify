@@ -1,20 +1,22 @@
 <header class="header wrapper">
     <a href="#main" class="link skip-link">Skip to content</a>
 
-    {%- if section.settings.main-menu.links != blank  -%}
+    {%- if section.settings.main-menu.links != blank -%}
         <nav class="header__navigation header__navigation--primary" aria-label="Primary">
             <ul class="list header__list header__list--primary" role="list">
                 {%- for link in section.settings.main-menu.links -%}
                     <li>
-                        <a class="link" href="{{ link.url }}">{{ link.title }}</a>
+                        <a class="link" href="{{ link.url }}">
+                            {{ link.title }}
+                        </a>
                     </li>
                 {%- endfor -%}
             </ul> 
         </nav>
     {%- endif -%}
 
-    {%- if section.settings.logo != blank  -%}
-        {%- assign logo-alt = section.settings.logo.alt | default: 'to the home page' -%}
+    {%- if section.settings.logo != blank -%}
+        {%- assign logo-alt = section.settings.logo.alt | default: 'To the home page.' -%}
 
         <a class="header__logo" href="{{ routes.root_url }}"> 
             {{ section.settings.logo | image_url: width: 70 | image_tag: 
@@ -28,11 +30,15 @@
     <nav class="header__navigation header__navigation--secondary" aria-label="Personal">
         <ul class="list header__list header__list--secondary" role="list">
             <li>
-                <a class="link" href="{{ routes.account_url }}">{{ 'customer.account.title' | t }}</a>
+                <a class="link" href="{{ routes.account_url }}">
+                    {{ 'customer.account.title' | t }}
+                </a>
             </li>
     
             <li>
-                <a class="link" href="{{ routes.search_url }}">{{ 'general.search.search' | t }}</a>
+                <a class="link" href="{{ routes.search_url }}">
+                    {{ 'general.search.search' | t }}
+                </a>
             </li>
     
             <li>

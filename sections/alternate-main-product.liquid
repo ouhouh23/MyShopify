@@ -11,7 +11,7 @@
         <section class="description product__description">
             <header class="description__section description__section--top">
                 {%- if product.title != blank -%}
-                     <h1 class="heading description__heading" id="heading-primary">
+                    <h1 class="heading description__heading" id="heading-primary">
                         {{ product.title }}                   
                     </h1>
                 {%- endif -%}
@@ -303,8 +303,8 @@
 
         <div class="product__illustration">
             <img 
-                src="{{ product.featured_image | image_url: width: 473}}" 
-                alt="image of the {{ product.featured_image.alt}}"
+                src="{{ product.featured_image | image_url: width: 473 }}" 
+                alt="Image of the {{ product.featured_image.alt }}."
                 width="473" 
                 height="707"
                 class="image product__image"
@@ -325,7 +325,7 @@
 
                         <div class="accordion__collapse" data-details-collapse>
                             <p class="paragraph">
-                                {{ block.settings.accordion_item_text | default: 'Accordion collapse.'}}
+                                {{ block.settings.accordion_item_text | default: 'Accordion collapse.' }}
                             </p>
                         </div>
                     </details>

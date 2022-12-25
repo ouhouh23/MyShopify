@@ -7,9 +7,10 @@
                 </li>
             </ul>
         {%-endif -%}
+
         <img 
-            src="{{ recommendation.featured_image | image_url: width: 248}}" 
-            alt="image of the {{ recommendation.featured_image.alt }}"
+            src="{{ recommendation.featured_image | image_url: width: 248 }}" 
+            alt="image of the {{ recommendation.featured_image.alt }}."
             width="248" 
             height="368"
             class="image card__image" 
