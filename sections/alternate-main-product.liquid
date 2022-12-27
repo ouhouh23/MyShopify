@@ -8,6 +8,16 @@
     data-section-type="alternate-main-product"
 >
     <div class="product__group">
+        <div class="product__illustration">
+            <img 
+                src="{{ product.featured_image | image_url: width: 473 }}" 
+                alt="Image of the {{ product.featured_image.alt }}."
+                width="473" 
+                height="707"
+                class="image product__image"
+                />
+        </div>
+        
         <section class="description product__description">
             <header class="description__section description__section--top">
                 {%- if product.title != blank -%}
@@ -300,16 +310,6 @@
                 </footer>
             {%- endif -%}
         </section>
-
-        <div class="product__illustration">
-            <img 
-                src="{{ product.featured_image | image_url: width: 473 }}" 
-                alt="Image of the {{ product.featured_image.alt }}."
-                width="473" 
-                height="707"
-                class="image product__image"
-                />
-        </div>
     </div>
 
     {%- if section.blocks.size > 0 -%}

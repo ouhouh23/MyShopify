@@ -279,16 +279,16 @@ body {
 
 .breadcrumb__item {
 	display: flex;
-	align-items: flex-end;
 	font-size: var(--font-xxs);
 }
 
 .breadcrumb__item::after {
-	content: '/';
+	content: '';
+	width: 0.375rem;
+	height: 0.8125rem;
+	background-image: url("https://yury-andrush-develop.netlify.app/assets/images/icons/slash.svg");
 	margin-left: 0.625rem;
-	margin-right: 0.5rem;
-	color: var(--font-color-light);
-	font-size: var(--font-sm);
+    margin-right: 0.5rem;
 }
 
 .breadcrumb__item--active {
@@ -320,7 +320,7 @@ body {
 
 .product__group {
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column;
 	row-gap: 3rem;
 }
 
@@ -335,7 +335,7 @@ body {
 
 	.product__group {
 		max-width: 75rem;
-		flex-direction: row-reverse;
+		flex-direction: row;
 		justify-content: space-between;
 	}
 
