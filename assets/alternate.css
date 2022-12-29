@@ -42,6 +42,7 @@
 	--color-silver-dark: #BDBDBD;
 	--color-concrete:  #F2F2F2;
 	--color-antique-brass: #C88252;
+	--color-red: #eb3434;
 
 	/* font color  */
 	--font-color-dark: var(--color-mirage);
@@ -49,6 +50,7 @@
 	--font-color-neutral: var(--color-shuttle-gray);
 	--font-color-light: var(--color-manatee);
 	--font-color-disabled:  var(--color-silver-dark);
+	--font-color-error: var(--color-red);
 
 	/* product color  */
 	--black-color: var(--color-mirage);
@@ -560,6 +562,14 @@ body {
 	--button-background: var(--color-deep-koamaru);
 	--button-text-color: var(--color-white);
 	--button-border: 0.0625rem solid var(--color-deep-koamaru);
+}
+
+.form__error {
+	display: none;
+	text-align: center;
+	text-decoration: underline;
+	font-weight: var(--weight-secondary);
+	color: var(--font-color-error);
 }
 
 /**

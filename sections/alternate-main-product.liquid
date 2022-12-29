@@ -35,7 +35,8 @@
                 {%- endif -%}
             </header>
 
-            <form class="form description__section" data-form>
+            {% form 'product', product, class: 'form description__section', data-form: 'data-form' %}
+                {% comment %}
                 <fieldset class="fieldset form__filter">
                     <legend class="form__legend">Size</legend>
 
@@ -280,11 +281,12 @@
                         +
                     </button>
                 </fieldset>
+                {%endcomment%}
 
                 <div class="form__button-group">
                     <button 
                         type="submit" 
-                        name="action" 
+                        name="submit" 
                         value="add"
                         class="button form__button form__button--secondary"
                         data-button-add
@@ -294,7 +296,7 @@
 
                     <button 
                         type="submit" 
-                        name="action" 
+                        name="submit" 
                         value="buy"
                         class="button form__button form__button--primary"
                         data-button-buy
@@ -302,7 +304,12 @@
                         Buy it now
                     </button>
                 </div>
-            </form>
+
+                <span class="form__error" role="alert" data-form-error ></span>
+
+                <input type="hidden" name="id" value="{{- product.selected_or_first_available_variant.id -}}">
+                <input type="hidden" name="sections" value="alternate-header">
+            {% endform %}
 
             {%- if product.description != blank-%}
                 <footer class="description__section description__section--bottom user-description">

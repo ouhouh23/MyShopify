@@ -1,4 +1,10 @@
-<header class="header wrapper">
+<script src="{{ 'alternate-header.js' | asset_url }}" type="module"></script>
+
+<header 
+    class="header wrapper" 
+    data-section-id="{{- section.id -}}"
+    data-section-type="alternate-header"
+>
     <a href="#main" class="link skip-link">Skip to content</a>
 
     {%- if section.settings.main-menu.links != blank -%}
@@ -45,7 +51,7 @@
                 <a class="link" aria-labelledby="cart-status" href="{{ routes.cart_url }}">
                     <span role="status" id="cart-status" aria-live="polite">
                         <span class="visually-hidden">Items in</span>
-                            {{ 'templates.cart.cart' | t }} (<span data-cart-counter>0</span>)
+                            {{ 'templates.cart.cart' | t }} (<span data-cart-counter>{{ cart.item_count }}</span>)
                     </span>
                 </a>
             </li>

@@ -95,11 +95,75 @@ class Accordion {
 	}
 }
 
+// Form
+class Form {
+	constructor(element) {
+		this.form = element
+		this.error = this.form.querySelector('[data-form-error]')
+		this.initEvents()
+	}
+
+	dispatchEvent(response) {
+	    const event = new CustomEvent('cart:added', {
+	        detail: {
+	            header: response.sections['alternate-header']
+	        },
+	        bubbles: true
+	    })
+
+	    this.form.dispatchEvent(event)
+	}
+
+	renderError(response) {
+		if (this.error.innerHTML !== response.description) {
+			this.error.innerHTML = response.description
+			this.error.style.display = 'inline-block'
+		}
+	}
+
+	deleteError() {
+		if (this.error.style.display == 'inline-block') {
+			this.error.style.display = 'none'
+		}
+	}
+
+	submit(event) {
+	    fetch(event.target.action + '.js', {
+	        method: event.target.method,
+	        body: new FormData(event.target),
+	        headers: {
+	            'X-Requested-With': 'XMLHttpRequest'
+	        }
+	    }).then(response => response.json())
+	        .then(response => {
+	        	if (response.status) {
+	        		this.renderError(response)
+				}
+
+				else {
+		       		this.deleteError()
+		        	this.dispatchEvent(response)
+		       }
+	        })
+	        .catch(console.error)
+
+	}
+
+	initEvents() {
+		this.form.addEventListener('submit', event => {
+			event.preventDefault()
+			this.submit(event)
+		})
+	}
+}
+
+
 // Shopify integration
 Shopify.theme.sections.register('alternate-main-product', {
 
     onLoad: function() {
         this.accordion = new Accordion(this.container.querySelector('[data-accordion]'))
+        this.form = new Form(this.container.querySelector('[data-form]'))
     },
 
     onBlockSelect: function(event) {
