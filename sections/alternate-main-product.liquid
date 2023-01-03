@@ -1,4 +1,8 @@
-<script src="{{ 'alternate-main-product.js' | asset_url }}" type="module"></script>
+<script>
+    const moneyFormat = '{{ shop.money_with_currency_format }}'
+    const unavailable = '{{ 'products.product.unavailable' | t }}'
+    const soldOut = '{{ 'products.product.sold_out' | t }}'
+</script>
 
 <main id="main" class="main" tabindex="-1">
 <article 
@@ -6,6 +10,7 @@
     class="product wrapper"
     data-section-id="{{- section.id -}}"
     data-section-type="alternate-main-product"
+    data-handle="{{- product.handle -}}"
 >
     <div class="product__group">
         <div class="product__illustration">
@@ -27,240 +32,87 @@
                 {%- endif -%}
 
                 {%- if product.price != blank -%}
-                    <span class="description__caption">
-                        {{ product.price | money_with_currency }}
+    
+
+                    <span class="description__caption" data-price>
+                        {{ product.selected_or_first_available_variant.price | money_with_currency }}
                     </span>
 
                     <small class="description__note">{{ 'products.product.include_taxes' | t }}</small>
                 {%- endif -%}
             </header>
 
-            {% form 'product', product, class: 'form description__section', data-form: 'data-form' %}
-                {% comment %}
-                <fieldset class="fieldset form__filter">
-                    <legend class="form__legend">Size</legend>
+            {% form 'product', product, class: 'form description__section', data-form: 'data-form', data-product-handle: product.handle %}
+                {%- unless product.has_only_default_variant -%}
+                    {%- for product-option in product.options_with_values -%}
+                        {%- if product-option.name == 'Color' -%}
+                            <fieldset class="fieldset form__filter form__filter--colored">
+                                <legend class="form__legend">
+                                    {{ product-option.name }} - <span data-color aria-hidden="true">White</span>
+                                </legend>
 
-                    <div>
-                        <input 
-                            type="radio" 
-                            name="size-input" 
-                            id="size-xs" 
-                            value="xs"
-                            class="form__input visually-hidden" 
-                        />
+                                {%- for value in product-option.values %}
+                                    <div class="form__item form__item--{{ value | downcase }}">
+                                        <input 
+                                            type="radio" 
+                                            name="options[{{- product-option.name | escape -}}]" 
+                                            id="{{ value | escape }}" 
+                                            value="{{ value | escape }}"
+                                            class="form__input visually-hidden"
+                                            {%- if product-option.selected_value == value -%}
+                                                checked="checked"
+                                            {%- endif -%}
+                                        />
 
-                        <label for="size-xs" class="form__label">
-                            <abbr>XS</abbr>
-                        </label>
-                    </div>
+                                        <label 
+                                            for="{{ value | escape }}"
+                                            data-tooltip="{{ value | escape }}"
+                                            class="form__label form__label--colored"
+                                        >
+                                            <span class="visually-hidden">{{ value | escape }}</span>
+                                        </label>
+                                    </div>
+                                {%- endfor -%}
+                            </fieldset>
+                        {%- else -%}
+                            <fieldset class="fieldset form__filter">
+                                <legend class="form__legend">{{ product-option.name }}</legend>
 
-                    <div>
-                        <input 
-                            type="radio" 
-                            name="size-input" 
-                            id="size-s" 
-                            value="s"
-                            checked="checked"
-                            class="form__input visually-hidden" 
-                        />
+                                {%- for value in product-option.values %}
+                                    <div>
+                                        <input 
+                                            type="radio" 
+                                            name="options[{{- product-option.name | escape -}}]"
+                                            id="{{ value | escape }}" 
+                                            value="{{ value | escape }}"
+                                            class="form__input visually-hidden"
+                                            {%- if product-option.selected_value == value -%}
+                                                checked="checked"
+                                            {%- endif -%} 
+                                        />
 
-                        <label for="size-s" class="form__label">
-                            <abbr>S</abbr>
-                        </label>
-                    </div>
-
-                    <div>
-                        <input 
-                            type="radio" 
-                            name="size-input" 
-                            id="size-m" 
-                            value="m"
-                            class="form__input visually-hidden" 
-                        />
-
-                        <label for="size-m" class="form__label">
-                            <abbr>M</abbr>
-                        </label>
-                    </div>
-
-                    <div>
-                        <input 
-                            type="radio" 
-                            name="size-input" 
-                            id="size-l" 
-                            value="l"
-                            class="form__input visually-hidden" 
-                        />
-
-                        <label for="size-l" class="form__label">
-                            <abbr>L</abbr>
-                        </label>
-                    </div>
-
-                    <div>
-                        <input 
-                            type="radio" 
-                            name="size-input" 
-                            id="size-xl" 
-                            value="xl"
-                            class="form__input visually-hidden"
-                        />
-
-                        <label for="size-xl" class="form__label">
-                            <abbr>XL</abbr>
-                        </label>
-                    </div>
-
-                    <div>
-                        <input 
-                            type="radio" 
-                            name="size-input" 
-                            id="size-2xl" 
-                            value="2xl"
-                            disabled="disabled" 
-                            class="form__input visually-hidden"
-                        />
-
-                        <label for="size-2xl" class="form__label">
-                            <abbr>2XL</abbr>
-                        </label>
-                    </div>
-                </fieldset>
-
-                <fieldset class="fieldset form__filter form__filter--colored" data-color-group>
-                    <legend class="form__legend">
-                        Color - <span data-color aria-hidden="true">White</span>
-                    </legend>
-
-                    <div class="form__item form__item--white">
-                        <input 
-                            type="radio" 
-                            name="color-input" 
-                            id="color-white" 
-                            value="White"
-                            checked="checked"
-                            class="form__input visually-hidden"
-                            data-color-input 
-                        />
-
-                        <label 
-                            for="color-white"
-                            data-tooltip="White"
-                            class="form__label form__label--colored"
-                        >
-                            <span class="visually-hidden">White</span>
-                        </label>
-                    </div>
-
-                    <div class="form__item form__item--black">
-                        <input 
-                            type="radio" 
-                            name="color-input" 
-                            id="color-black" 
-                            value="Black"
-                            class="form__input visually-hidden"
-                            data-color-input 
-                        />
-
-                        <label 
-                            for="color-black" 
-                            data-tooltip="Black"
-                            class="form__label form__label--colored"
-                        >
-                            <span class="visually-hidden">Black</span>
-                        </label>
-                    </div>
-
-                    <div class="form__item form__item--gray">
-                        <input 
-                            type="radio" 
-                            name="color-input" 
-                            id="color-gray-latte" 
-                            value="Gray latte"
-                            class="form__input visually-hidden"
-                            data-color-input 
-                        />
-
-                        <label 
-                            for="color-gray-latte"
-                            data-tooltip="Gray latte"
-                            class="form__label form__label--colored"
-                        >
-                            <span class="visually-hidden">Gray latte</span>
-                        </label>
-                    </div>
-
-                    <div class="form__item form__item--purple">
-                        <input 
-                            type="radio" 
-                            name="color-input" 
-                            id="color-purple-latte" 
-                            value="Purple latte"
-                            class="form__input visually-hidden"
-                            data-color-input 
-                        />
-
-                        <label 
-                            for="color-purple-latte" 
-                            data-tooltip="Purple latte"
-                            class="form__label form__label--colored"
-                        >
-                            <span class="visually-hidden">Purple latte</span>
-                        </label>
-                    </div>
-
-                    <div class="form__item form__item--pink">
-                        <input 
-                            type="radio" 
-                            name="color-input" 
-                            id="color-pink-latte" 
-                            value="Pink latte"
-                            disabled="disabled"
-                            class="form__input visually-hidden"
-                            data-color-input 
-                        />
-
-                        <label 
-                            for="color-pink-latte" 
-                            data-tooltip="Pink latte"
-                            class="form__label form__label--colored"
-                        >
-                            <span class="visually-hidden">Pink latte</span>
-                        </label>
-                    </div>
-
-                    <div class="form__item form__item--orange">
-                        <input 
-                            type="radio" 
-                            name="color-input" 
-                            id="color-orange-latte" 
-                            value="Orange latte"
-                            disabled="disabled"
-                            class="form__input visually-hidden"
-                            data-color-input 
-                        />
-
-                        <label 
-                            for="color-orange-latte" 
-                            data-tooltip="Orange latte"
-                            class="form__label form__label--colored"
-                        >
-                            <span class="visually-hidden">Orange latte</span>
-                        </label>
-                    </div>
-                </fieldset>
-
+                                        <label for="{{ value | escape }}" class="form__label">
+                                            <abbr>{{ value | escape }}</abbr>
+                                        </label>
+                                    </div>
+                                {%- endfor -%}
+                            </fieldset>
+                        {%- endif -%}          
+                    {%- endfor -%}
+                {%- endunless -%}
                 <fieldset data-counter class="fieldset counter">
-                    <legend class="form__legend">{{ 'products.product.quantity.label' | t }}</legend>
+                    <legend class="form__legend">Quantity</legend>
                     
                     <input
                         data-input 
                         type="number"
-                        name="quantity-input" 
+                        name="quantity" 
                         class="input-number counter__input"
                         aria-label="items quantity"
                         aria-live="polite"
                         aria-atomic="true"
+                        value="2"
+
                     />
 
                     <button
@@ -281,13 +133,12 @@
                         +
                     </button>
                 </fieldset>
-                {%endcomment%}
 
                 <div class="form__button-group">
                     <button 
                         type="submit" 
                         name="submit" 
-                        value="add"
+                        value="{{ 'products.product.add_to_cart' | t }}"
                         class="button form__button form__button--secondary"
                         data-button-add
                     >
@@ -297,7 +148,7 @@
                     <button 
                         type="submit" 
                         name="submit" 
-                        value="buy"
+                        value="Buy it now"
                         class="button form__button form__button--primary"
                         data-button-buy
                     >
@@ -306,9 +157,9 @@
                 </div>
 
                 <span class="form__error" role="alert" data-form-error ></span>
-
-                <input type="hidden" name="id" value="{{- product.selected_or_first_available_variant.id -}}">
+                <input type="hidden" name="sections_url" value="{{ routes.root_url }}">
                 <input type="hidden" name="sections" value="alternate-header">
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id}}">
             {% endform %}
 
             {%- if product.description != blank-%}

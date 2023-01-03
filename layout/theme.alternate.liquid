@@ -8,15 +8,10 @@
     <title>Shop template</title>
 
     <link rel="stylesheet" href="{{ 'fonts.css' | asset_url }}" />
-    <link rel="stylesheet" href="{{ 'alternate.css' | asset_url }}" />
-    
-    <script src="https://unpkg.com/@shopify/theme-sections@4.1.1/dist/theme-sections.min.js" defer></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            Shopify.theme.sections.load('*')
-        })
-    </script>
+    <link rel="stylesheet" href="{{ 'theme.min.css' | asset_url }}" />
+    
+    <script src="{{ 'theme.min.js' | asset_url }}" defer></script>
 
     {{ content_for_header }}
 </head>

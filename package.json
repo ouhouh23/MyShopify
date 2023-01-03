@@ -1,0 +1,93 @@
+{
+  "name": "academy-2",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "shopify theme dev --store andrush-yu",
+    "push": "shopify theme push --store andrush-yu",
+    "pull": "shopify theme pull --store andrush-yu",
+    "list": "shopify theme list --store andrush-yu",
+    "watch": "webpack --config webpack.config.js --mode development --watch",
+    "build": "webpack --config webpack.config.js --mode production",
+    "stylelint": "stylelint \"src/styles/**/*.scss\"",
+    "stylelint-fix": "stylelint \"src/styles/**/*.scss\" --fix",
+    "eslint": "eslint \"src/scripts/**/*.js\"",
+    "eslint-fix": "eslint \"src/scripts/**/*.js\" --fix",
+    "prettier": "prettier \"src/scripts/**/*.js\" \"src/styles/**/*.scss\"",
+    "prettier-fix": "prettier --write \"src/scripts/**/*.js\" \"src/styles/**/*.scss\""
+  },
+  "author": "tuktukvlad@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "@shopify/babel-preset": "^25.0.0",
+    "@shopify/browserslist-config": "^3.0.0",
+    "@shopify/cli": "^3.30.1",
+    "@shopify/eslint-plugin": "^42.0.2",
+    "@shopify/postcss-plugin": "^5.0.2",
+    "@shopify/prettier-config": "^1.1.2",
+    "@shopify/prettier-plugin-liquid": "^1.0.2",
+    "@shopify/stylelint-plugin": "^11.0.1",
+    "@shopify/theme": "^3.30.1",
+    "@shopify/theme-product": "^4.1.1",
+    "@shopify/theme-product-form": "^4.1.1",
+    "@shopify/theme-sections": "^4.1.1",
+    "babel-core": "6.26.3",
+    "babel-loader": "^9.1.0",
+    "concurrently": "^7.6.0",
+    "css-loader": "^6.7.3",
+    "eslint": "^8.30.0",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.7.2",
+    "postcss-loader": "^7.0.2",
+    "prettier": "^2.8.1",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.57.1",
+    "sass-loader": "^13.2.0",
+    "stylelint": "^14.16.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "browserslist": [
+    "extends @shopify/browserslist-config"
+  ],
+  "prettier": "@shopify/prettier-config",
+  "stylelint": {
+    "extends": [
+      "@shopify/stylelint-plugin",
+      "@shopify/stylelint-plugin/prettier"
+    ],
+    "reportNeedlessDisables": false,
+    "rules": {
+      "scss/selector-no-union-class-name": null
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:@shopify/esnext",
+      "plugin:@shopify/prettier"
+    ],
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "globals": {
+      "Shopify": true,
+      "theme": true
+    },
+    "rules": {
+      "lines-around-comment": [
+        "error",
+        {
+          "beforeBlockComment": false
+        }
+      ],
+      "padded-blocks": [
+        "error",
+        "never"
+      ]
+    }
+  },
+  "dependencies": {
+    "@shopify/theme-currency": "^4.1.1"
+  }
+}
