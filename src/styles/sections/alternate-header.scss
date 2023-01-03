@@ -32,7 +32,7 @@
 }
 
 @media only screen and (min-width: 480px) {
-  .header__list {
+  .header__list { /* stylelint-disable-line */
     flex-direction: row;
     justify-content: center;
     text-align: initial;

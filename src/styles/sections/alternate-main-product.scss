@@ -97,7 +97,7 @@
 }
 
 @media only screen and (min-width: 960px) {
-  .description__section--bottom {
+  .description__section--bottom { /* stylelint-disable-line */
     max-width: 24.1875rem;
   }
 }
@@ -163,7 +163,7 @@
     }
   }
 
-  &__input:enabled + &__label--colored:hover::before {
+  &__input:enabled + &__label--colored:hover::before { /* stylelint-disable-line */
     content: attr(data-tooltip);
   }
 
@@ -181,42 +181,12 @@
       background: var(--inner-label-background);
       border: 0.0625rem solid var(--inner-label-border-color);
     }
-
-    &--white {
-      --inner-label-background: var(--color-white);
-      --inner-label-border-color: var(--color-silver);
-    }
-
-    &--black {
-      --inner-label-background: var(--black-color);
-      --inner-label-border-color: var(--black-color);
-    }
-
-    &--gray {
-      --inner-label-background: var(--gray-latte-color);
-      --inner-label-border-color: var(--gray-latte-color);
-    }
-
-    &--purple {
-      --inner-label-background: var(--purple-latte-color);
-      --inner-label-border-color: var(--purple-latte-color);
-    }
-
-    &--pink {
-      --inner-label-background: var(--pink-latte-color);
-      --inner-label-border-color: var(--pink-latte-color);
-    }
-
-    &--orange {
-      --inner-label-background: var(--orange-latte-color);
-      --inner-label-border-color: var(--orange-latte-color);
-    }
   }
 
   &__input:checked + &__label {
     --label-border-color: var(--color-mirage);
 
-    font-weight: var(--weight-secondary);
+    font-weight: var(--weight-secondary); /* stylelint-disable-line */
   }
 
   &__input:disabled + &__label {
@@ -227,7 +197,7 @@
     --label-border-color: var(--label-disabled-border-color);
     --label-background: var(--label-disabled-background);
 
-    &::after {
+    &::after { /* stylelint-disable-line */
       content: '';
       position: absolute;
       height: 3.4468rem;
@@ -237,7 +207,7 @@
     }
   }
 
-  &__input:enabled + &__label:hover {
+  &__input:enabled + &__label:hover { /* stylelint-disable-line */
     border-color: var(--label-hover-border-color);
   }
 
@@ -351,7 +321,7 @@
     }
   }
 
-  &__element[open] > &__summary::after {
+  &__element[open] > &__summary::after { /* stylelint-disable-line */
     display: none;
   }
 

@@ -52,12 +52,14 @@
                                 </legend>
 
                                 {%- for value in product-option.values %}
-                                    <div class="form__item form__item--{{ value | downcase }}">
+                                    {%- assign color = value | escape | downcase -%}
+
+                                    <div class="form__item form__item--{{ color }}">
                                         <input 
                                             type="radio" 
                                             name="options[{{- product-option.name | escape -}}]" 
-                                            id="{{ value | escape }}" 
-                                            value="{{ value | escape }}"
+                                            id="{{ color }}" 
+                                            value="{{ color }}"
                                             class="form__input visually-hidden"
                                             {%- if product-option.selected_value == value -%}
                                                 checked="checked"
@@ -65,13 +67,24 @@
                                         />
 
                                         <label 
-                                            for="{{ value | escape }}"
+                                            for="{{ color }}"
                                             data-tooltip="{{ value | escape }}"
                                             class="form__label form__label--colored"
                                         >
-                                            <span class="visually-hidden">{{ value | escape }}</span>
+                                            <span class="visually-hidden">{{ color }}</span>
                                         </label>
                                     </div>
+
+                                    {% style %}
+                                        .form__item--{{ color }}::after {
+                                            --inner-label-background: {{ color }};
+                                            {%- if color == 'white' -%}
+                                                --inner-label-border-color: var(--color-silver);
+                                            {%- else -%}
+                                                --inner-label-border-color: {{ color }};
+                                            {%- endif -%}
+                                        }
+                                    {% endstyle %}
                                 {%- endfor -%}
                             </fieldset>
                         {%- else -%}
