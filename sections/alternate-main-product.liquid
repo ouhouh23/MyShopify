@@ -52,14 +52,12 @@
                                 </legend>
 
                                 {%- for value in product-option.values %}
-                                    {%- assign color = value | escape | downcase -%}
-
-                                    <div class="form__item form__item--{{ color }}">
+                                    <div class="form__item form__item--{{ value | escape | downcase }}">
                                         <input 
                                             type="radio" 
                                             name="options[{{- product-option.name | escape -}}]" 
-                                            id="{{ color }}" 
-                                            value="{{ color }}"
+                                            id="{{ value | escape }}" 
+                                            value="{{ value | escape }}"
                                             class="form__input visually-hidden"
                                             {%- if product-option.selected_value == value -%}
                                                 checked="checked"
@@ -67,15 +65,17 @@
                                         />
 
                                         <label 
-                                            for="{{ color }}"
+                                            for="{{ value | escape }}"
                                             data-tooltip="{{ value | escape }}"
                                             class="form__label form__label--colored"
                                         >
-                                            <span class="visually-hidden">{{ color }}</span>
+                                            <span class="visually-hidden">{{ value | escape }}</span>
                                         </label>
                                     </div>
 
                                     {% style %}
+                                        {%- assign color = value | escape | downcase -%}
+
                                         .form__item--{{ color }}::after {
                                             --inner-label-background: {{ color }};
                                             {%- if color == 'white' -%}
