@@ -119,10 +119,14 @@ class Form {
         return response.json();
       })
       .then((productJSON) => {
-        this.productForm = new ProductForm(this.form, productJSON, {
-          onOptionChange: this.optionChange.bind(this),
-          onFormSubmit: this.submit.bind(this),
-        });
+        if (productJSON.available) {
+          this.productForm = new ProductForm(this.form, productJSON, {
+            onOptionChange: this.optionChange.bind(this),
+            onFormSubmit: this.submit.bind(this),
+          });
+        } else {
+          this.changeButtons(productJSON);
+        }
       });
   }
 
@@ -134,25 +138,27 @@ class Form {
   optionChange() {
     this.variant = event.dataset.variant;
 
-    this.changeButtons();
+    this.changeButtons(this.variant);
     if (!this.variant) return;
     this.changeVariantUrl();
     this.dispatchPriceChange();
+    this.renderOptionName('[data-colors]');
   }
 
-  changeButtons() {
+  changeButtons(object) {
     const buttons = [
       this.form.querySelector('[data-button-add]'),
       this.form.querySelector('[data-button-buy]'),
     ];
+
     buttons.forEach((element) => {
-      if (!this.variant) {
+      if (!object) {
         element.setAttribute('disabled', 'disabled');
         element.innerHTML = unavailable;
-      } else if (this.variant && !this.variant.available) {
+      } else if (object && !object.available) {
         element.setAttribute('disabled', 'disabled');
         element.innerHTML = soldOut;
-      } else if (this.variant && this.variant.available && element.disabled) {
+      } else if (object && object.available && element.disabled) {
         element.removeAttribute('disabled');
         element.innerHTML = element.value;
       }
@@ -176,6 +182,16 @@ class Form {
     });
 
     this.form.dispatchEvent(event);
+  }
+
+  renderOptionName(optionGroup) {
+    const inputGroup = this.form.querySelector(optionGroup);
+    if (!inputGroup) return;
+
+    const checkedInput = inputGroup.querySelector(':checked');
+    const colorName = this.form.querySelector('[data-color-name]');
+
+    colorName.innerHTML = checkedInput.value;
   }
 
   submit(event) {

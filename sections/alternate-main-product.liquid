@@ -32,7 +32,6 @@
                 {%- endif -%}
 
                 {%- if product.price != blank -%}
-    
 
                     <span class="description__caption" data-price>
                         {{ product.selected_or_first_available_variant.price | money_with_currency }}
@@ -46,9 +45,10 @@
                 {%- unless product.has_only_default_variant -%}
                     {%- for product-option in product.options_with_values -%}
                         {%- if product-option.name == 'Color' -%}
-                            <fieldset class="fieldset form__filter form__filter--colored">
+                            <fieldset class="fieldset form__filter form__filter--colored" data-colors>
                                 <legend class="form__legend">
-                                    {{ product-option.name }} - <span data-color aria-hidden="true">White</span>
+                                    {{ product-option.name }} - 
+                                    <span data-color-name aria-hidden="true">{{ product-option.selected_value }}</span>
                                 </legend>
 
                                 {%- for value in product-option.values %}
