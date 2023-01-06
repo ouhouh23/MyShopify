@@ -14,7 +14,7 @@ class Toggle {
 
   createAnimation() {
     const content = this.details.querySelector('[data-details-collapse]');
-    const contentProperties = window.getComputedStyle(content);
+    const contentProperties = document.defaultView.getComputedStyle(content);
     const contentHeight = contentProperties.getPropertyValue('height');
     const contentPadding = contentProperties.getPropertyValue('padding');
 
@@ -37,6 +37,7 @@ class Toggle {
     };
 
     content.style.overflow = 'hidden';
+    this.details.open = false;
 
     return content.animate(keyframes, options);
   }
@@ -57,11 +58,7 @@ class Toggle {
   }
 
   initAction() {
-    if (this.details.open) {
-      this.collapse();
-    } else {
-      this.expand();
-    }
+    this.details.open ? this.collapse() : this.expand();
   }
 }
 
@@ -106,7 +103,6 @@ class Form {
   constructor(container) {
     this.container = container;
     this.form = this.container.querySelector('[data-form]');
-    this.error = this.form.querySelector('[data-form-error]');
 
     this.createProductForm();
   }
@@ -159,9 +155,11 @@ class Form {
         element.setAttribute('disabled', 'disabled');
         element.innerHTML = soldOut;
       } else if (object && object.available && element.disabled) {
+        element.removeAttribute('role');
         element.removeAttribute('disabled');
         element.innerHTML = element.value;
       }
+      buttons[0].setAttribute('role', 'status');
     });
   }
 
@@ -216,16 +214,29 @@ class Form {
   }
 
   renderError(response) {
-    if (this.error.innerHTML === response.description) return;
+    this.deleteError();
+
+    if (!this.error) {
+      this.error = document.createElement('span');
+      this.error.classList.add('form__error');
+      this.error.setAttribute('id', 'form-error');
+      this.error.setAttribute('role', 'alert');
+      this.error.setAttribute('aria-live', 'polite');
+
+      this.numberInput = this.form.querySelector('[data-input]');
+      this.numberInput.setAttribute('aria-describedby', 'form-error');
+    }
 
     this.error.innerHTML = response.description;
-    this.error.style.display = 'inline-block';
+    this.form.appendChild(this.error);
+    this.numberInput.setAttribute('aria-invalid', 'true');
   }
 
   deleteError() {
-    if (this.error.style.display === 'inline-block') {
-      this.error.style.display = 'none';
-    }
+    if (!this.form.querySelector('.form__error')) return;
+
+    this.error.remove();
+    this.numberInput.setAttribute('aria-invalid', 'false');
   }
 
   dispatchCartChange(response) {

@@ -1,5 +1,5 @@
 <li>
-    <article aria-labelledby="card-heading-1" class="card">
+    <article class="card">
         {%- if recommendation.available != true -%}
             <ul class="list tags card__tags" role="list">
                 <li class="tags__item">
@@ -16,7 +16,7 @@
             class="image card__image" 
         />
       
-        <h3 class="heading card__heading" id="card-heading-{{ index }}">
+        <h3 class="heading card__heading">
             <a class="link card__link" href="{{ recommendation.url }}">
                 {{ recommendation.title | default: "Recommended product" }}
             </a>
@@ -42,6 +42,7 @@
 
         {%- if recommendation.price != blank -%}
             <span>
+                <span class="visually-hidden">Product price is</span>
                 {{ recommendation.price | money_with_currency }}
             </span>
         {%- endif -%}

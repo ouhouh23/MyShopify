@@ -1,7 +1,7 @@
 {%- if section.settings.product_collection != blank -%}
-    <aside aria-labelledby="heading-secondary" class="aside wrapper">
+    <aside class="aside wrapper">
         {%- if section.settings.recommendation_heading != blank -%}
-            <h2 id="heading-secondary" class="heading aside__heading">     
+            <h2 class="heading aside__heading">     
                 {{ section.settings.recommendation_heading }}
             </h2>
         {%- endif -%}
@@ -16,7 +16,7 @@
                     endif
 
                     if recommendation.id != product.id 
-                        render 'alternate-product-card', recommendation: recommendation, index: forloop.index 
+                        render 'alternate-product-card', recommendation: recommendation
                         assign count = count | plus: 1
                     endif 
                 endfor

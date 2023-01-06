@@ -4,9 +4,8 @@
     const soldOut = '{{ 'products.product.sold_out' | t }}'
 </script>
 
-<main id="main" class="main" tabindex="-1">
+<main id="main" aria-label="product" class="main" tabindex="-1">
 <article 
-    aria-labelledby="heading-primary" 
     class="product wrapper"
     data-section-id="{{- section.id -}}"
     data-section-type="alternate-main-product"
@@ -16,25 +15,26 @@
         <div class="product__illustration">
             <img 
                 src="{{ product.featured_image | image_url: width: 473 }}" 
-                alt="Image of the {{ product.featured_image.alt }}."
+                alt="Image of the product."
                 width="473" 
                 height="707"
                 class="image product__image"
                 />
         </div>
         
-        <section class="description product__description">
+        <section class="description product__description" aria-label="product description">
             <header class="description__section description__section--top">
                 {%- if product.title != blank -%}
-                    <h1 class="heading description__heading" id="heading-primary">
+                    <h1 class="heading description__heading">
                         {{ product.title }}                   
                     </h1>
                 {%- endif -%}
 
                 {%- if product.price != blank -%}
 
-                    <span class="description__caption" data-price>
-                        {{ product.selected_or_first_available_variant.price | money_with_currency }}
+                    <span class="description__caption" aria-atomic="true" role="status" aria-live="polite">
+                        <span class="visually-hidden">Product price is</span>
+                        <span data-price>{{ product.selected_or_first_available_variant.price | money_with_currency }}</span>
                     </span>
 
                     <small class="description__note">{{ 'products.product.include_taxes' | t }}</small>
@@ -153,6 +153,7 @@
                         name="submit" 
                         value="{{ 'products.product.add_to_cart' | t }}"
                         class="button form__button form__button--secondary"
+                        role="status"
                         data-button-add
                     >
                         {{ 'products.product.add_to_cart' | t }}
@@ -168,15 +169,13 @@
                         Buy it now
                     </button>
                 </div>
-
-                <span class="form__error" role="alert" data-form-error ></span>
-                <input type="hidden" name="sections_url" value="{{ routes.root_url }}">
+                
                 <input type="hidden" name="sections" value="alternate-header">
-                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id}}">
             {% endform %}
 
             {%- if product.description != blank-%}
                 <footer class="description__section description__section--bottom user-description">
+                    <span class="visually-hidden">product information</span>
                     {{ product.description }}       
                 </footer>
             {%- endif -%}
@@ -187,7 +186,7 @@
         <ul class="list product__accordion accordion" role="list" data-accordion>
             {%- for block in section.blocks -%}
                 <li {{ block.shopify_attributes }} class="accordion__item">
-                    <details class="accordion__element" data-details>
+                    <details class="accordion__element" data-details open>
                         <summary class="accordion__summary" data-summary>
                             <h2 class="heading accordion__heading">
                                 {{ block.settings.accordion_item_heading | default: 'Accordion heading.' }}

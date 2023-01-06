@@ -164,7 +164,7 @@
   }
 
   &__input:enabled + &__label--colored:hover::before { /* stylelint-disable-line */
-    content: attr(data-tooltip);
+    content: attr(data-tooltip) / "";
   }
 
   &__item {
@@ -237,7 +237,6 @@
   }
 
   &__error {
-    display: none;
     text-align: center;
     text-decoration: underline;
     font-weight: var(--weight-secondary);
