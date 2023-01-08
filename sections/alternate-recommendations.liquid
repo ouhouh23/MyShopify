@@ -1,10 +1,8 @@
 {%- if section.settings.product_collection != blank -%}
     <aside class="aside wrapper">
-        {%- if section.settings.recommendation_heading != blank -%}
-            <h2 class="heading aside__heading">     
-                {{ section.settings.recommendation_heading }}
-            </h2>
-        {%- endif -%}
+        <h2 class="heading aside__heading">     
+            {{ section.settings.recommendation_heading | default: 'You may also like.' }}
+        </h2>
 
         <ul class="list cards" role="list">
             {% liquid

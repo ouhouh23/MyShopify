@@ -121,7 +121,7 @@ body {
   top: 0.01625rem;
 }
 
-.button:hover:not(:disabled),
-.link:hover {
+.button:hover:not(:disabled), .button:focus-visible,
+.link:hover, .link:focus-visible {
   opacity: 0.7;
 }

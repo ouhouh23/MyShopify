@@ -24,21 +24,16 @@
         
         <section class="description product__description" aria-label="product description">
             <header class="description__section description__section--top">
-                {%- if product.title != blank -%}
-                    <h1 class="heading description__heading">
-                        {{ product.title }}                   
-                    </h1>
-                {%- endif -%}
+                <h1 class="heading description__heading">
+                    {{ product.title }}                   
+                </h1>
 
-                {%- if product.price != blank -%}
+                <span class="description__caption" aria-atomic="true" role="status" aria-live="polite">
+                    <span class="visually-hidden">Product price is</span>
+                    <span data-price>{{ product.selected_or_first_available_variant.price | money_with_currency }}</span>
+                </span>
 
-                    <span class="description__caption" aria-atomic="true" role="status" aria-live="polite">
-                        <span class="visually-hidden">Product price is</span>
-                        <span data-price>{{ product.selected_or_first_available_variant.price | money_with_currency }}</span>
-                    </span>
-
-                    <small class="description__note">{{ 'products.product.include_taxes' | t }}</small>
-                {%- endif -%}
+                <small class="description__note">{{ 'products.product.include_taxes' | t }}</small>
             </header>
 
             {% form 'product', product, class: 'form description__section', data-form: 'data-form', data-product-handle: product.handle %}

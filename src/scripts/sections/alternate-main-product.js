@@ -7,14 +7,26 @@ class Toggle {
   constructor(element) {
     this.details = element;
     this.summary = this.details.querySelector('[data-summary]');
+    this.eventTarget = new EventTarget()
 
-    this.animation = this.createAnimation();
-    this.animation.cancel();
+    this.createAnimation();
+
+    this.initEvents()
+  }
+
+  dispatchEvent(type, detail)  {
+    this.eventTarget.dispatchEvent(new CustomEvent(type, { detail }));
+  }
+
+  addEventListener(event, callback) {
+    this.eventTarget.addEventListener(event, callback);
   }
 
   createAnimation() {
-    const content = this.details.querySelector('[data-details-collapse]');
-    const contentProperties = document.defaultView.getComputedStyle(content);
+    this.content = this.details.querySelector('[data-details-collapse]');
+    const contentProperties = document.defaultView.getComputedStyle(
+      this.content,
+    );
     const contentHeight = contentProperties.getPropertyValue('height');
     const contentPadding = contentProperties.getPropertyValue('padding');
 
@@ -36,10 +48,19 @@ class Toggle {
       easing: 'ease-in',
     };
 
-    content.style.overflow = 'hidden';
+    const keyframeEffect = new KeyframeEffect(this.content, keyframes, options);
+
     this.details.open = false;
 
-    return content.animate(keyframes, options);
+    this.animation = new Animation(keyframeEffect);
+  }
+
+  updateAnimationHeight() {
+    const animationKeyframes = this.animation.effect.getKeyframes();
+    animationKeyframes[1].height = document.defaultView
+      .getComputedStyle(this.content)
+      .getPropertyValue('height');
+    this.animation.effect.setKeyframes(animationKeyframes);
   }
 
   expand() {
@@ -48,17 +69,33 @@ class Toggle {
   }
 
   collapse() {
-    this.animation.playbackRate = -1;
-    this.animation.play();
+    this.animation.reverse();
     this.animation.finished.then(() => {
-      this.details.open = false;
-      this.animation.playbackRate = 1;
+      this.animation.reverse();
       this.animation.pause();
+      this.details.open = false;
     });
   }
 
-  initAction() {
-    this.details.open ? this.collapse() : this.expand();
+  toggleAction() {
+    if (this.animation.playState === 'running') return;
+    this.updateAnimationHeight();
+
+    if (this.details.open) {
+        this.collapse()
+        this.dispatchEvent('toggle:closed')
+    }
+    else {
+        this.expand()
+        this.dispatchEvent('toggle:opened', { target: this})
+    }
+  }
+
+  initEvents() {
+    this.summary.addEventListener('click', (event) => {
+        event.preventDefault()
+        this.toggleAction()
+    })
   }
 }
 
@@ -66,35 +103,27 @@ class Accordion {
   constructor(element) {
     this.toggles = Array.from(
       element.querySelectorAll('[data-details]'),
-      (item) => new Toggle(item),
+      (item) => {
+        const toggle = new Toggle(item);
+        this.initEvents(toggle);
+        return toggle;
+      },
     );
-    this.toggles.forEach((toggle) => {
-      this.initEvents(toggle);
-    });
   }
 
-  refresh() {
-    const toggleOpened = this.toggles.find(
-      (element) => element.details.open === true,
-    );
-    if (toggleOpened) {
-      toggleOpened.collapse();
+  refresh(event) {
+    if (this.activeToggleIndex >= 0) {
+      this.toggles[this.activeToggleIndex].collapse()
     }
+
+    this.activeToggleIndex = this.toggles.indexOf(event.detail.target)
   }
 
   initEvents(toggle) {
-    const details = toggle.details;
-    const summary = toggle.summary;
-
-    summary.addEventListener('click', () => {
-      if (details.open === false) {
-        this.refresh();
-      }
-    });
-    summary.addEventListener('click', (event) => {
-      event.preventDefault();
-      toggle.initAction();
-    });
+    toggle.addEventListener('toggle:opened', this.refresh.bind(this))
+    toggle.addEventListener('toggle:closed', () => {
+        this.activeToggleIndex = -1
+    })
   }
 }
 
@@ -221,7 +250,6 @@ class Form {
       this.error.classList.add('form__error');
       this.error.setAttribute('id', 'form-error');
       this.error.setAttribute('role', 'alert');
-      this.error.setAttribute('aria-live', 'polite');
 
       this.numberInput = this.form.querySelector('[data-input]');
       this.numberInput.setAttribute('aria-describedby', 'form-error');

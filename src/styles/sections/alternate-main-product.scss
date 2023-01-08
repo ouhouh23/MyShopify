@@ -163,7 +163,8 @@
     }
   }
 
-  &__input:enabled + &__label--colored:hover::before { /* stylelint-disable-line */
+  &__input:focus-visible + &__label--colored::before, /* stylelint-disable-line */
+  &__input:enabled + &__label--colored:hover::before { /* stylelint-disable-line */ 
     content: attr(data-tooltip) / "";
   }
 
@@ -331,5 +332,6 @@
   &__collapse {
     padding-top: 0.5rem;
     padding-bottom: 2.5rem;
+    overflow: hidden;
   }
 }
