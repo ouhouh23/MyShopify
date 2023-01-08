@@ -1,0 +1,101 @@
+/**
+ * Card block
+ */
+.card {
+  position: relative;
+  max-width: 15.5rem;
+  text-align: center;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus-within {
+    opacity: 0.8;
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 0.9;
+    object-fit: cover;
+  }
+
+  &__heading {
+    font-size: var(--font-md);
+    margin-top: 1.25rem;
+  }
+
+  &__link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__link:focus-visible {
+    outline: none;
+
+    &::before {
+      outline: 1px auto Highlight;
+      outline: 1px auto -webkit-focus-ring-color;
+    }
+  }
+
+  &__list {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.625rem;
+    margin-bottom: 0.625rem;
+  }
+
+  &__item {
+    width: 0.75rem;
+    height: 0.75rem;
+    background: var(--card-color);
+
+    &--brown {
+      --card-color: var(--brown-color);
+    }
+
+    &--orange {
+      --card-color: var(--orange-latte-color);
+    }
+
+    &--pink {
+      --card-color: var(--pink-latte-color);
+    }
+
+    &--purple {
+      --card-color: var(--purple-latte-color);
+    }
+  }
+
+  &__tags {
+    position: absolute;
+    left: 0.75rem;
+    top: 0.5rem;
+    z-index: 1;
+  }
+}
+
+/**
+ * Tags block
+ */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  &__item {
+    background: var(--color-white);
+    padding: 0.25rem;
+    font-size: var(--font-xs);
+    color: var(--font-color-neutral);
+  }
+}

@@ -61,38 +61,3 @@
     }
   }
 }
-
-/**
- * Breadcrumb block
- */
-.breadcrumb {
-  max-width: 84rem;
-  margin-top: 1.25rem;
-
-  &__list {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  &__item {
-    display: flex;
-    font-size: var(--font-xxs);
-
-    &::after {
-      content: '';
-      width: 0.375rem;
-      height: 0.8125rem;
-      background-image: url('https://yury-andrush-develop.netlify.app/assets/images/icons/slash.svg');
-      margin-left: 0.625rem;
-      margin-right: 0.5rem;
-    }
-
-    &--active {
-      color: var(--font-color-light);
-
-      &::after {
-        display: none;
-      }
-    }
-  }
-}

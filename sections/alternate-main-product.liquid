@@ -2,6 +2,11 @@
     const moneyFormat = '{{ shop.money_with_currency_format }}'
     const unavailable = '{{ 'products.product.unavailable' | t }}'
     const soldOut = '{{ 'products.product.sold_out' | t }}'
+
+    window.variants_inventory = {};
+    {%- for variant in product.variants -%}
+        window.variants_inventory[{{- variant.id -}}] = {{ variant.inventory_quantity | json }};
+    {%- endfor -%}
 </script>
 
 <main id="main" aria-label="product" class="main" tabindex="-1">
@@ -117,10 +122,6 @@
                         name="quantity" 
                         class="input-number counter__input"
                         aria-label="items quantity"
-                        aria-live="polite"
-                        aria-atomic="true"
-                        value="2"
-
                     />
 
                     <button
@@ -148,7 +149,7 @@
                         name="submit" 
                         value="{{ 'products.product.add_to_cart' | t }}"
                         class="button form__button form__button--secondary"
-                        role="status"
+                        aria-live="polite"
                         data-button-add
                     >
                         {{ 'products.product.add_to_cart' | t }}

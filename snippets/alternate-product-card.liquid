@@ -1,13 +1,5 @@
 <li>
     <article class="card">
-        {%- if recommendation.available != true -%}
-            <ul class="list tags card__tags" role="list">
-                <li class="tags__item">
-                    <span>{{ 'products.product.sold_out' | t }}</span>
-                </li>
-            </ul>
-        {%-endif -%}
-
         <img 
             src="{{ recommendation.featured_image | image_url: width: 248 }}" 
             alt="image of the {{ recommendation.featured_image.alt }}."
@@ -15,6 +7,14 @@
             height="368"
             class="image card__image" 
         />
+
+        {%- if recommendation.available != true -%}
+            <ul class="list tags card__tags" role="list">
+                <li class="tags__item">
+                    <span>{{ 'products.product.sold_out' | t }}</span>
+                </li>
+            </ul>
+        {%-endif -%}
       
         <h3 class="heading card__heading">
             <a class="link card__link" href="{{ recommendation.url }}">
