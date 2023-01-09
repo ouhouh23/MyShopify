@@ -45,8 +45,11 @@
 
     &__image {
       max-width: 29.5625rem;
-      margin-left: auto;
-      margin-right: auto;
+
+      margin: {
+        left: auto;
+        right: auto;
+      }
     }
 
     &__description {
@@ -71,27 +74,27 @@
     gap: 1.5rem;
 
     &--top {
-      letter-spacing: var(--spacing-primary);
+      letter-spacing: $spacing-primary;
       margin-bottom: 3rem;
     }
 
     &--bottom {
-      letter-spacing: var(--spacing-negative);
-      font-size: var(--font-lg);
+      letter-spacing: $spacing-negative;
+      font-size: $font-lg;
       margin-top: 3rem;
     }
   }
 
   &__heading {
-    font-size: var(--font-xxl);
+    font-size: $font-xxl;
   }
 
   &__caption {
-    font-size: var(--font-xl);
+    font-size: $font-xl;
   }
 
   &__note {
-    color: var(--font-color-neutral);
+    color: $font-color-neutral;
     font-size: inherit;
   }
 }
@@ -110,27 +113,30 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    letter-spacing: var(--spacing-primary);
+    letter-spacing: $spacing-primary;
 
-    --label-border-color: var(--color-silver);
-    --label-background: var(--color-white);
-    --label-disabled-background: var(--color-concrete);
-    --label-disabled-border-color: var(--color-concrete);
-    --label-hover-border-color: var(--color-mirage);
+    --label-border-color: #{$color-silver};
+    --label-background: #{$color-white};
+    --label-disabled-background: #{$color-concrete};
+    --label-disabled-border-color: #{$color-concrete};
+    --label-hover-border-color: #{$color-mirage};
 
     &--colored {
       --label-border-color: transparent;
       --label-background: transparent;
       --label-disabled-background: transparent;
       --label-disabled-border-color: transparent;
-      --label-hover-border-color: var(--color-silver);
+      --label-hover-border-color: #{$color-silver};
     }
   }
 
   &__legend {
-    padding-left: 0;
-    padding-right: 0;
     margin-bottom: 0.75rem;
+
+    padding: {
+      left: 0;
+      right: 0
+    }
   }
 
   &__label {
@@ -142,7 +148,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    letter-spacing: var(--spacing-negative);
+    letter-spacing: $spacing-negative;
 
     &--colored {
       position: relative;
@@ -152,13 +158,13 @@
         top: -1.0625rem;
         left: 1.6875rem;
         z-index: 1;
-        font-size: var(--font-xs);
+        font-size: $font-xs;
         letter-spacing: initial;
         white-space: nowrap;
-        color: var(--font-color-neutral);
-        background: var(--color-white);
+        color: $font-color-neutral;
+        background: $color-white;
         padding: 0.1875rem;
-        border: var(--border-primary);
+        border: $border-primary;
       }
     }
   }
@@ -185,13 +191,13 @@
   }
 
   &__input:checked + &__label {
-    --label-border-color: var(--color-mirage);
+    --label-border-color: #{$color-mirage};
 
-    font-weight: var(--weight-secondary); /* stylelint-disable-line */
+    font-weight: $weight-secondary; /* stylelint-disable-line */
   }
 
   &__input:disabled + &__label {
-    color: var(--font-color-disabled);
+    color: $font-color-disabled;
     position: relative;
     cursor: not-allowed;
 
@@ -203,7 +209,7 @@
       position: absolute;
       height: 3.4468rem;
       width: 0.0625rem;
-      background: var(--color-silver);
+      background: $color-silver;
       transform: rotate(45deg);
     }
   }
@@ -213,8 +219,7 @@
   }
 
   &__input:focus-visible + &__label {
-    outline: 1px auto Highlight;
-    outline: 1px auto -webkit-focus-ring-color;
+    @extend %native-focus;
   }
 
   &__button-group {
@@ -226,22 +231,22 @@
 
   &__button {
     color: var(--button-text-color);
-    font-size: var(--font-sm);
-    letter-spacing: var(--spacing-large);
+    font-size: $font-sm;
+    letter-spacing: $spacing-large;
     padding: 0.9rem;
 
     &--primary {
-      --button-background: var(--color-deep-koamaru);
-      --button-text-color: var(--color-white);
-      --button-border: 0.0625rem solid var(--color-deep-koamaru);
+      --button-background: #{$color-deep-koamaru};
+      --button-text-color: #{$color-white};
+      --button-border: 0.0625rem solid #{$color-deep-koamaru};
     }
   }
 
   &__error {
     text-align: center;
     text-decoration: underline;
-    font-weight: var(--weight-secondary);
-    color: var(--font-color-error);
+    font-weight: $weight-secondary;
+    color: $font-color-error;
   }
 }
 
@@ -249,27 +254,30 @@
  * Counter block
  */
 .counter {
-  letter-spacing: var(--spacing-secondary);
+  letter-spacing: $spacing-secondary;
   display: flex;
 
   &__input {
     min-width: 2.125rem;
     max-width: 2.5rem;
     min-height: 2.5rem;
-    color: var(--font-color-dark);
-    font-size: var(--font-lg);
-    line-height: var(--line-height-sm);
-    border-left: none;
-    border-right: none;
+    color: $font-color-dark;
+    font-size: $font-lg;
+    line-height: $line-height-sm;
     order: 2;
+
+    border: {
+      left: none;
+      right: none;
+    }
   }
 
   &__button {
     max-width: 2.5rem;
     width: 100%;
-    font-size: var(--font-lg);
-    line-height: var(--line-height-sm);
-    color: var(--font-color-neutral);
+    font-size: $font-lg;
+    line-height: $line-height-sm;
+    color: $font-color-neutral;
 
     &:disabled {
       opacity: 0.5;
@@ -287,11 +295,11 @@
  */
 .accordion {
   &__item {
-    letter-spacing: var(--spacing-primary);
-    border-top: var(--border-primary);
+    letter-spacing: $spacing-primary;
+    border-top: $border-primary;
 
     &:last-of-type {
-      border-bottom: var(--border-primary);
+      border-bottom: $border-primary;
     }
   }
 
@@ -314,7 +322,7 @@
       right: 0;
       width: 0.75rem;
       height: 0.0625rem;
-      background: var(--color-mirage);
+      background: $color-mirage;
     }
 
     &::after {
@@ -327,12 +335,15 @@
   }
 
   &__heading {
-    font-size: var(--font-md);
+    font-size: $font-md;
   }
 
   &__collapse {
-    padding-top: 0.5rem;
-    padding-bottom: 2.5rem;
     overflow: hidden;
+
+    padding: {
+      top: 0.5rem;
+      bottom: 2.5rem;
+    }
   }
 }

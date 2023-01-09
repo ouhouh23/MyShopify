@@ -1,0 +1,11 @@
+%native-focus {
+  outline: 1px auto Highlight;
+  outline: 1px auto -webkit-focus-ring-color;
+}
+
+%margin-vertical-reset {
+  margin: {
+    top: 0;
+    bottom: 0;
+  }
+}

@@ -3,13 +3,16 @@
  */
 .aside {
   max-width: 76rem;
-  margin-top: 6.25rem;
-  margin-bottom: 6.75rem;
+
+  margin: {
+    top: 6.25rem;
+    bottom: 6.75rem;
+  }
 
   &__heading {
-    font-size: var(--font-xxl);
-    color: var(--font-color-accent);
-    letter-spacing: var(--spacing-primary);
+    font-size: $font-xxl;
+    color: $font-color-accent;
+    letter-spacing: $spacing-primary;
     text-align: center;
     margin-bottom: 4rem;
   }

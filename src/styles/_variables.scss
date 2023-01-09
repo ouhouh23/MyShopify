@@ -1,70 +1,61 @@
-/**
- * Variables
- */
+/* base font-style */
+$font-basic: 'Avenir Next Rounded Std';
+$weight-primary: 400;
+$weight-secondary: 500;
+
+/* font size */
+$font-xxl: 1.375rem;
+$font-xl: 1.25rem;
+$font-lg: 1.125rem;
+$font-md: 1rem;
+$font-sm: 0.875rem;
+$font-xs: 0.8125rem;
+$font-xxs: 0.75rem;
+
+/* line heigths */
+$line-height-xl: 2;
+$line-height-lg: 1.39;
+$line-height-md: 1.23;
+$line-height-sm: 1;
+
+/* letter spacing */
+$spacing-primary: 0.01em;
+$spacing-secondary: 0.0625rem;
+$spacing-large: 0.16em;
+$spacing-negative: -0.01em;
+
+/* color palette */
+$color-white: rgb(255, 255, 255);
+$color-mirage: rgb(26, 31, 41);
+$color-deep-koamaru: rgb(23, 28, 143);
+$color-shuttle-gray: rgb(94, 98, 107);
+$color-dull-lavender: rgb(186, 155, 229);
+$color-sea-pink: rgb(233, 160, 167);
+$color-apricot-peach: rgb(248, 202, 177);
+$color-silver: rgb(204, 204, 204);
+$color-silver-dark: rgb(189, 189, 189);
+$color-concrete: rgb(242, 242, 242);
+$color-red: rgb(226, 42, 44);
+
+/* font color  */
+$font-color-dark: $color-mirage;
+$font-color-accent: $color-deep-koamaru;
+$font-color-neutral: $color-shuttle-gray;
+$font-color-disabled: $color-silver-dark;
+$font-color-error: $color-red;
+
+/* border */
+$border-primary: 0.0625rem solid $color-silver;
+
+/* button */
+$button-background: $color-white;
+$button-text-color: $font-color-dark;
+$button-border: $border-primary;
+
+/* Css variables */
 :root {
-  /* base font-style */
-  --font-basic: 'Avenir Next Rounded Std';
-  --weight-primary: 400;
-  --weight-secondary: 500;
-
-  /* font size */
-  --font-xxl: 1.375rem;
-  --font-xl: 1.25rem;
-  --font-lg: 1.125rem;
-  --font-md: 1rem;
-  --font-sm: 0.875rem;
-  --font-xs: 0.8125rem;
-  --font-xxs: 0.75rem;
-
-  /* line heigths */
-  --line-height-xl: 2;
-  --line-height-lg: 1.39;
-  --line-height-md: 1.23;
-  --line-height-sm: 1;
-
-  /* letter spacing */
-  --spacing-primary: 0.01em;
-  --spacing-secondary: 0.0625rem;
-  --spacing-large: 0.16em;
-  --spacing-negative: -0.01em;
-
-  /* color palette */
-  --color-white: rgb(255, 255, 255);
-  --color-mirage: rgb(26, 31, 41);
-  --color-deep-koamaru: rgb(23, 28, 143);
-  --color-manatee: rgb(146, 148, 153);
-  --color-shuttle-gray: rgb(94, 98, 107);
-  --color-bombay: rgb(174, 174, 176);
-  --color-dull-lavender: rgb(186, 155, 229);
-  --color-sea-pink: rgb(233, 160, 167);
-  --color-apricot-peach: rgb(248, 202, 177);
-  --color-silver: rgb(204, 204, 204);
-  --color-silver-dark: rgb(189, 189, 189);
-  --color-concrete: rgb(242, 242, 242);
-  --color-antique-brass: rgb(200, 130, 82);
-  --color-red: rgb(226, 42, 44);
-
-  /* font color  */
-  --font-color-dark: var(--color-mirage);
-  --font-color-accent: var(--color-deep-koamaru);
-  --font-color-neutral: var(--color-shuttle-gray);
-  --font-color-light: var(--color-manatee);
-  --font-color-disabled: var(--color-silver-dark);
-  --font-color-error: var(--color-red);
-
-  /* product color  */
-  --black-color: var(--color-mirage);
-  --brown-color: var(--color-antique-brass);
-  --gray-latte-color: var(--color-bombay);
-  --purple-latte-color: var(--color-dull-lavender);
-  --pink-latte-color: var(--color-sea-pink);
-  --orange-latte-color: var(--color-apricot-peach);
-
-  /* border */
-  --border-primary: 0.0625rem solid var(--color-silver);
-
-  /* button */
-  --button-background: var(--color-white);
-  --button-text-color: var(--font-color-dark);
-  --button-border: var(--border-primary);
+  --button-background: #{$button-background};
+  --button-text-color: #{$button-text-color};
+  --button-border: #{$button-border};
+  --color-silver: #{$color-silver};
 }

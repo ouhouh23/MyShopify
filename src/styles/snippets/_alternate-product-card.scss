@@ -2,18 +2,14 @@
  * Card block
  */
 .card {
+  position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;
-  position: relative;
   max-width: 15.5rem;
   text-align: center;
 
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &:focus-within {
+  &:hover, &:focus-within {
     opacity: 0.8;
   }
 
@@ -24,7 +20,7 @@
   }
 
   &__heading {
-    font-size: var(--font-md);
+    font-size: $font-md;
     margin-top: 1.25rem;
   }
 
@@ -41,8 +37,7 @@
     outline: none;
 
     &::before {
-      outline: 1px auto Highlight;
-      outline: 1px auto -webkit-focus-ring-color;
+      @extend %native-focus;
     }
   }
 
@@ -53,8 +48,11 @@
     gap: 0.5rem;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 0.625rem;
-    margin-bottom: 0.625rem;
+
+    margin: {
+      top: 0.625rem;
+      bottom: 0.625rem;
+    }
   }
 
   &__item {
@@ -85,9 +83,9 @@
   gap: 0.5rem;
 
   &__item {
-    background: var(--color-white);
+    background: $color-white;
     padding: 0.25rem;
-    font-size: var(--font-xs);
-    color: var(--font-color-neutral);
+    font-size: $font-xs;
+    color: $font-color-neutral;
   }
 }

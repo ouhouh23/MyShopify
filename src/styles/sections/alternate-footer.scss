@@ -3,9 +3,12 @@
  */
 .footer {
   max-width: 81rem;
-  padding-top: 5rem;
-  padding-bottom: 2.0625rem;
   text-align: center;
+  
+  padding: {
+    top: 5rem;
+    bottom: 2.0625rem;
+  }
 
   &__container {
     display: flex;
@@ -14,15 +17,15 @@
   }
 
   &__section {
-    line-height: var(--line-height-xl);
-    letter-spacing: var(--spacing-secondary);
-    color: var(--font-color-neutral);
+    line-height: $line-height-xl;
+    letter-spacing: $spacing-secondary;
+    color: $font-color-neutral;
   }
 
   &__heading {
-    font-size: var(--font-xs);
-    line-height: var(--line-height-lg);
-    color: var(--font-color-dark);
+    font-size: $font-xs;
+    line-height: $line-height-lg;
+    color: $font-color-dark;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
   }
@@ -38,8 +41,8 @@
   }
 
   &__copyrights {
-    font-size: var(--font-md);
-    color: var(--font-color-neutral);
+    font-size: $font-md;
+    color: $font-color-neutral;
     display: block;
     margin-top: 5.75rem;
   }

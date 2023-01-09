@@ -13,28 +13,25 @@ html {
 
 body {
   margin: 0;
-  font-family: var(--font-basic), sans-serif;
-  line-height: var(--line-height-md);
-  font-weight: var(--weight-primary);
-  color: var(--font-color-dark);
+  font-family: $font-basic, sans-serif;
+  line-height: $line-height-md;
+  font-weight: $weight-primary;
+  color: $font-color-dark;
 }
 
 .list {
+  @extend %margin-vertical-reset;
   list-style-type: none;
-  margin-top: 0;
-  margin-bottom: 0;
   padding-left: 0;
 }
 
 .heading {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-weight: var(--weight-primary);
+  @extend %margin-vertical-reset;
+  font-weight: $weight-primary;
 }
 
 .paragraph {
-  margin-top: 0;
-  margin-bottom: 0;
+  @extend %margin-vertical-reset;
 }
 
 .link {
@@ -51,7 +48,7 @@ body {
 .fieldset {
   margin: 0;
   padding: 0;
-  border: 0;
+  border: none;
 }
 
 .button {
@@ -73,7 +70,7 @@ body {
   appearance: textfield;
   font-family: inherit;
   text-align: center;
-  border: var(--border-primary);
+  border: $border-primary;
 }
 
 .input-number::-webkit-outer-spin-button,
@@ -83,9 +80,9 @@ body {
 
 .break {
   margin: 0;
-  border: 0;
+  border: none;
   height: 0.0625rem;
-  background: var(--color-silver);
+  background: $color-silver;
 }
 
 .visually-hidden {
@@ -102,12 +99,11 @@ body {
 }
 
 .user-description > * {
-  margin-top: 0;
-  margin-bottom: 0;
+  @extend %margin-vertical-reset;
 }
 
 .user-description :where(h1, h2, h3, h4, h5, h6) {
-  font-weight: var(--weight-primary);
+  font-weight: $weight-primary;
 }
 
 .skip-link {
@@ -121,7 +117,9 @@ body {
   top: 0.01625rem;
 }
 
-.button:hover:not(:disabled), .button:focus-visible,
-.link:hover, .link:focus-visible {
+.button:hover:not(:disabled),
+.button:focus-visible,
+.link:hover,
+.link:focus-visible {
   opacity: 0.7;
 }
