@@ -227,6 +227,9 @@ body {
   margin-left: 0.625rem;
   margin-right: 0.5rem;
 }
+.breadcrumb__item--active {
+  font-weight: var(--weight-secondary);
+}
 .breadcrumb__item--active::after {
   display: none;
 }
