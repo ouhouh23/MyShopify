@@ -24,7 +24,7 @@
                 width="473" 
                 height="707"
                 class="image product__image"
-                />
+            />
         </div>
         
         <section class="description product__description" aria-label="product description">
@@ -105,7 +105,7 @@
                                         />
 
                                         <label for="{{ value | escape }}" class="form__label">
-                                            <abbr>{{ value | escape }}</abbr>
+                                            {{ value | escape }}
                                         </label>
                                     </div>
                                 {%- endfor -%}

@@ -4,12 +4,12 @@
     {%- if section.blocks.size > 0 -%}
         <div class="footer__container">
             {% liquid
-                for block in section.blocks                   
+                for block in section.blocks
                     case block.type
                         when 'About'
                             render 'alternate-footer-(footer-about)', block: block
                         when 'Menu'
-                            render 'alternate-footer-(footer-menu)', block: block                      
+                            render 'alternate-footer-(footer-menu)', block: block
                     endcase
                 endfor
             %}  

@@ -24,6 +24,8 @@
     }
 
     &--active {
+      font-weight: var(--weight-secondary);
+      
       &::after {
         display: none;
       }
