@@ -79,7 +79,7 @@ body {
 }
 
 .break {
-  margin: 0;
+  @extend %margin-vertical-reset;
   border: none;
   height: 0.0625rem;
   background: $color-silver;

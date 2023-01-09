@@ -150,7 +150,6 @@
                         name="submit" 
                         value="{{ 'products.product.add_to_cart' | t }}"
                         class="button form__button form__button--secondary"
-                        aria-live="polite"
                         data-button-add
                     >
                         {{ 'products.product.add_to_cart' | t }}
@@ -190,7 +189,7 @@
                             </h2>
                         </summary>
 
-                        <div class="accordion__collapse" data-details-collapse>
+                        <div class="accordion__collapse user-description" data-details-collapse>
                             {{ block.settings.accordion_item_text | default: 'Accordion collapse.' }}
                         </div>
                     </details>

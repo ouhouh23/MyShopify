@@ -35,7 +35,6 @@ export class Form {
 
   optionChange() {
     this.variant = event.dataset.variant;
-
     this.changeButtons(this.variant);
     if (!this.variant) return;
     this.changeVariantUrl();
@@ -58,11 +57,9 @@ export class Form {
         element.setAttribute('disabled', 'disabled');
         element.innerHTML = soldOut;
       } else if (object && object.available && element.disabled) {
-        element.removeAttribute('aria-live', 'polite');
         element.removeAttribute('disabled');
         element.innerHTML = element.value;
       }
-      buttons[0].setAttribute('aria-live', 'polite');
     });
   }
 
