@@ -11,7 +11,13 @@ register('alternate-main-product', {
     this.productPrice = new ProductPrice(
       this.container.querySelector('[data-price]'),
     );
-    this.counterInput = new CounterInput(this.container.querySelector('[data-counter]'), 1, 1, 1, 11)
+    this.counterInput = new CounterInput(
+      this.container.querySelector('[data-counter]'),
+      1,
+      1,
+      1,
+      11,
+    );
     this.accordion = new Accordion(
       this.container.querySelector('[data-accordion]'),
     );
@@ -20,14 +26,15 @@ register('alternate-main-product', {
   onUnload() {
     this.form.destroyProductForm();
     this.productPrice.destroyEvents();
-    this.accordion.destroyEvents()
-    this.counterInput.destroyEvents()
+    this.accordion.destroyEvents();
+    this.counterInput.destroyEvents();
   },
 
   onBlockSelect(event) {
     const selectedBlock = event.target.querySelector('[data-details]');
     const accordionItem = this.accordion.toggles.find(
-      (element) =>  element.details === selectedBlock);
+      (element) => element.details === selectedBlock,
+    );
     accordionItem.toggleAction();
   },
 });

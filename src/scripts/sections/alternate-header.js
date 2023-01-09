@@ -1,4 +1,5 @@
 import {register} from '@shopify/theme-sections';
+
 import {Cart} from '../components/cart';
 
 register('alternate-header', {

@@ -123,7 +123,7 @@ export class Form {
         } else {
           this.deleteError();
 
-          if (event.submitter.value == 'Buy it now') {
+          if (event.submitter.value === 'Buy it now') {
             location.href = `https://andrush-yu.myshopify.com/cart/${response.variant_id}:${response.quantity}`;
           }
 

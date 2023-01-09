@@ -12,15 +12,15 @@ export class Toggle {
   constructor(element) {
     this.details = element;
     this.summary = this.details.querySelector('[data-summary]');
-    this.eventTarget = new EventTarget()
+    this.eventTarget = new EventTarget();
 
     this.createAnimation();
     this.details.open = false;
-    this.initEvents()
+    this.initEvents();
   }
 
-  dispatchEvent(type, detail)  {
-    this.eventTarget.dispatchEvent(new CustomEvent(type, { detail }));
+  dispatchEvent(type, detail) {
+    this.eventTarget.dispatchEvent(new CustomEvent(type, {detail}));
   }
 
   addEventListener(event, callback) {
@@ -89,24 +89,23 @@ export class Toggle {
     this.updateAnimationHeight();
 
     if (this.details.open) {
-        this.collapse()
-        this.dispatchEvent('toggle:closed')
-    }
-    else {
-        this.expand()
-        this.dispatchEvent('toggle:opened', { target: this})
+      this.collapse();
+      this.dispatchEvent('toggle:closed');
+    } else {
+      this.expand();
+      this.dispatchEvent('toggle:opened', {target: this});
     }
   }
 
   initEvents() {
     this.summary.addEventListener('click', (event) => {
-        event.preventDefault()
-        this.toggleAction()
-    })
+      event.preventDefault();
+      this.toggleAction();
+    });
   }
 }
 
-//Accordion
+// Accordion
 export class Accordion {
   constructor(element) {
     this.toggles = Array.from(
@@ -121,25 +120,31 @@ export class Accordion {
 
   refresh(event) {
     if (this.activeToggleIndex >= 0) {
-      this.toggles[this.activeToggleIndex].collapse()
+      this.toggles[this.activeToggleIndex].collapse();
     }
 
-    this.activeToggleIndex = this.toggles.indexOf(event.detail.target)
+    this.activeToggleIndex = this.toggles.indexOf(event.detail.target);
   }
 
   resetActiveToggleIndex() {
-    this.activeToggleIndex = -1
+    this.activeToggleIndex = -1;
   }
 
   initEvents(toggle) {
-    toggle.addEventListener('toggle:opened', this.refresh.bind(this))
-    toggle.addEventListener('toggle:closed', this.resetActiveToggleIndex.bind(this))
+    toggle.addEventListener('toggle:opened', this.refresh.bind(this));
+    toggle.addEventListener(
+      'toggle:closed',
+      this.resetActiveToggleIndex.bind(this),
+    );
   }
 
   destroyEvents() {
-    this.toggles.forEach(element => {
-        element.removeEventListener('toggle:opened', this.refresh.bind(this))
-        element.removeEventListener('toggle:closed', this.resetActiveToggleIndex.bind(this))
-    })
+    this.toggles.forEach((element) => {
+      element.removeEventListener('toggle:opened', this.refresh.bind(this));
+      element.removeEventListener(
+        'toggle:closed',
+        this.resetActiveToggleIndex.bind(this),
+      );
+    });
   }
 }
