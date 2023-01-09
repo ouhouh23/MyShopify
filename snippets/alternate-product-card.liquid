@@ -22,26 +22,34 @@
             </a>
         </h3>
 
-        <ul class="list card__list" role="list">
-            <li class="card__item card__item--brown">
-                <span class="visually-hidden">Brown latte color available</span>
-            </li>
+        {%- unless recommendation.has_only_default_variant -%}
+            {%- for recommendation-option in recommendation.options_with_values -%}
+                {%- if recommendation-option.name == 'Color' -%}
+                    <ul class="list card__list" role="list">
+                        {%- for value in recommendation-option.values -%}
+                            <li class="card__item card__item--{{ value | escape | downcase }}">
+                                <span class="visually-hidden">{{ value }} color available</span>
+                            </li>
+                            {% style %}
+                                {%- assign color = value | escape | downcase -%}
 
-            <li class="card__item card__item--orange">
-                <span class="visually-hidden">Orange latte color available</span>
-            </li>
-
-            <li class="card__item card__item--pink">
-                <span class="visually-hidden">Pink latte color available</span>
-            </li>
-
-            <li class="card__item card__item--purple">
-                <span class="visually-hidden">Purple color available</span>
-            </li>
-        </ul>
+                                .card__item--{{ color }} {
+                                    --card-color: {{ color }};
+                                    {%- if color == 'white' -%}
+                                        --card-border-color: var(--color-silver);
+                                    {%- else -%}
+                                        --card-border-color: {{ color }};
+                                    {%- endif -%}
+                                        }
+                            {% endstyle %}
+                        {%- endfor -%}
+                    </ul>
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endunless -%}
 
         {%- if recommendation.price != blank -%}
-            <span>
+            <span class="card__price">
                 <span class="visually-hidden">Product price is</span>
                 {{ recommendation.price | money_with_currency }}
             </span>

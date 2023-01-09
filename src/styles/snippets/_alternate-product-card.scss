@@ -2,6 +2,9 @@
  * Card block
  */
 .card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   position: relative;
   max-width: 15.5rem;
   text-align: center;
@@ -55,25 +58,14 @@
   }
 
   &__item {
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 0.625rem;
+    height: 0.625rem;
     background: var(--card-color);
+    border: 0.0625rem solid var(--card-border-color);
+  }
 
-    &--brown {
-      --card-color: var(--brown-color);
-    }
-
-    &--orange {
-      --card-color: var(--orange-latte-color);
-    }
-
-    &--pink {
-      --card-color: var(--pink-latte-color);
-    }
-
-    &--purple {
-      --card-color: var(--purple-latte-color);
-    }
+  &__price {
+    margin-top: auto;
   }
 
   &__tags {
